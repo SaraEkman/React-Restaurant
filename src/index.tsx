@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOMClient from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -14,7 +14,10 @@ import { TableReservation } from './components/table-reservation/TableReservatio
 import { UserForm } from './components/user-form/UserForm';
 import { NotFound } from './components/not-found/NotFound';
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = ReactDOMClient.createRoot(container as Element);
+
+root.render(
 <React.StrictMode>
   <BrowserRouter>
     <Routes>
@@ -29,8 +32,7 @@ ReactDOM.render(
       </Route>
     </Routes>
   </BrowserRouter>
-</React.StrictMode>,
-document.getElementById('root')
+</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
