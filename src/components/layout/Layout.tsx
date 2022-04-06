@@ -1,0 +1,41 @@
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
+import { UserForm } from "../user-form/UserForm";
+
+export function Layout() {
+  return (
+    <React.Fragment>
+      <nav>
+        <ul>
+          <li>
+            <Link to={"/about"}>Om oss</Link>
+          </li>
+          <li>
+            <Link to={"/contact"}>Kontakt</Link>
+          </li>
+          <li>
+            <Link to={"/menu"}>Meny</Link>
+          </li>
+          <li>
+            <Link to={"/table-reservation"}>Boka bord</Link>
+          </li>
+          <li>
+            <Link to={"/admin"}>Logga in</Link>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <Outlet></Outlet>
+      </main>
+      <UserForm></UserForm>
+      <footer>
+        <p>Kontakt information</p>
+        <ul>
+          <li>Linkedin</li>
+          <li>Facebook</li>
+          <li>instagram</li>
+        </ul>
+      </footer>
+    </React.Fragment>
+  );
+}
