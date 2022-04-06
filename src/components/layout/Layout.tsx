@@ -27,7 +27,7 @@ export function Layout() {
       <main>
         <Outlet></Outlet>
       </main>
-      <UserForm></UserForm>
+
       <footer>
         <p>Kontakt information</p>
         <ul>
