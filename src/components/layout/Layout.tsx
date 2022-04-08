@@ -1,12 +1,14 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { UserForm } from "../user-form/UserForm";
 
 export function Layout() {
   return (
     <React.Fragment>
       <nav>
         <ul>
+          <li>
+            <Link to={""}>Hom</Link>
+          </li>
           <li>
             <Link to={"/about"}>Om oss</Link>
           </li>
@@ -27,7 +29,6 @@ export function Layout() {
       <main>
         <Outlet></Outlet>
       </main>
-
       <footer>
         <p>Kontakt information</p>
         <ul>
