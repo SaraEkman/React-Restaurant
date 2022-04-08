@@ -40,6 +40,9 @@ export function UserForm(props: IGetTimeProps) {
 
     let postData = new GetDataServices()
     postData.createBooking(CreateReserve)
+    let saveInf = [newCustomer.name, props.time, props.date]
+
+    localStorage.setItem('ReservationInfo', JSON.stringify(saveInf))
 
     //  return <ThanksForReservation name={newCustomer.name} date={props.date} time={props.time} />
 

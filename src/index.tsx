@@ -29,10 +29,10 @@ root.render(
           <Route path="/contact" element={<Contact />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/table-reservation" element={<TableReservation />} />
-          {/* <Route
+          <Route
             path="/thanksForReservation"
             element={<ThanksForReservation />}
-          /> */}
+          />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
