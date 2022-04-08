@@ -1,0 +1,95 @@
+[
+    {
+        "title": "Förrätter",
+        "imagePath": "./images/food.jpg",
+        "dishes": [
+            {
+                "name": "Aubergine Rotondi",
+                "description": "Gratinerade auberginerullar fyllda med krämig ricotta, spenat. ",
+                "sek": 89
+            },
+            {
+                "name": "Burrata",
+                "description": "Len och krämig italiensk färskost med säsongens kvisttomater, schalottenlök, pacchini tomater och olivolja. ",
+                "sek": 95
+            },
+            {
+                "name": "Capesante & Pancetta",
+                "description": "Pancettalindade smörstekta kammusslor, kronärtskockscreme, inlagda fikon och friterad purjolök julienne.",
+                "sek": 125
+            },
+            {
+                "name": "Carpaccio Di Vitello Tonnato",
+                "description": "Carpaccio på tunt skivad kalv med ruccola och hyvlad Grana Padano samt en dressing på tonfisk och kapri.",
+                "sek": 125
+            },
+            {
+                "name": "Insalata di Carciofi/Kronärtskocka",
+                "description": "Inlagda kronärtskockor serveras på ruccolabädd m pinjenötter, inlagda vitlöksklyftor och blandade oliver.",
+                "sek": 125
+            },
+            {
+                "name": "Scampi in Padella",
+                "description": "Sauterade jätteräkor med citron, persilja, vitlök, chilipeppar & vit vin Serveras på ruccolabädd.",
+                "sek": 125
+            }
+        ]
+    },
+    {
+        "title": "Varmrätter",
+        "imagePath": "./images/pasta.jpg",
+        "dishes": [
+            {
+                "name": "PAPPADELLE CON FILETO DI MANZO",
+                "description": "oxfilé, Karljohanssvamp, vitlök, vitvin lök cognac, färska örter och tryffelkräm grädde parmesan.",
+                "sek": 125
+            },
+            {
+                "name": "CARBONARA ",
+                "description": "Äggula bacon lök vitlök svartpeppar grädde parmesan.",
+                "sek": 125
+            },
+            {
+                "name": "SPAGHETTI  CON GAMERONI ",
+                "description": "Scampi cocktailtomater  vitt vin, chili, vitlök och persilja.",
+                "sek": 125
+            },
+            {
+                "name": "RISOTTO ALLA  ASPARAGI ",
+                "description": "scampi färsk sparris blåmusslor chili vitlök lök vitvin persilja grädde.",
+                "sek": 125
+            },
+            {
+                "name": "RISOTTO ALLA MARINARA",
+                "description": "Saffransrisotto med scampi vongole blåmusslor vitlök chili vitvin lök persilja grädde.",
+                "sek": 125
+            },
+            {
+                "name": "MERLUZZON  ALLA TOSCANA",
+                "description": "Torskrygg serveras  med inlagda kronärtskockar  citronsås,  kapris.",
+                "sek": 125
+            }
+        ]
+    },
+    {
+        "title": "Efterrätt",
+        "imagePath": "./images/cake.jpg",
+        "dishes": [
+            {
+                "name": "TIRAMISU",
+                "description": "Klassisk Tiramisu med smak av kaffe, amarettolikör och kakao.",
+                "sek": 125
+            },
+            {
+                "name": " GRANDE GELATO",
+                "description": "Fettsnål och smakrik italiensk glass.",
+                "sek": 125
+            },
+            {
+                "name": "KARAMELOCO",
+                "description": "Vegansk chokladkaka toppas med vegansk vaniljglass, kanderade hasselnötter och karamelsås.",
+                "sek": 125
+            }
+        ]
+    }
+]
