@@ -3,7 +3,6 @@ export interface ICreateReserve {
     restaurantId: string;
     date: string;
     time: String;
-    numberOfGuests: string;
+    numberOfGuests: number;
     customer: User;
-   
 } 

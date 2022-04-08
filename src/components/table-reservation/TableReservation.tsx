@@ -24,12 +24,6 @@ export function TableReservation() {
     setInputNumValue(e.target.value)
   }
 
-  const saveData = () => {
-    console.log(InputDateValue, InputNumValue)
-    // getBookings()
-    // checkData()
-  }
-
   useEffect(() => {
     let getBookingsApi = new GetDataServices()
     getBookingsApi.getBookings().then((bookingsData) => {
@@ -60,17 +54,17 @@ export function TableReservation() {
       }
     })
 
-    if (lists18.length >= 1) {
+    if (lists18.length >= 15) {
       console.log(lists18.length)
       setShowBtn18(false)
       setShowError18(true)
     }
-    if (lists21.length >= 1) {
+    if (lists21.length >= 15) {
       console.log(lists21.length)
       setShowBtn21(false)
       setShowError21(true)
     }
-    if (lists18.length >= 1 && lists21.length >= 1) {
+    if (lists18.length >= 15 && lists21.length >= 15) {
       setShowError(true)
       setShowError18(false)
       setShowError21(false)
@@ -82,6 +76,8 @@ export function TableReservation() {
     setShowUserForm(true)
   }
 
+  let today = new Date().toLocaleDateString()
+
   return (
     <>
       <label>
@@ -90,6 +86,7 @@ export function TableReservation() {
           type="number"
           value={InputNumValue}
           max="6"
+          min="1"
           onChange={saveNumOfPeople}
         />
       </label>
@@ -99,20 +96,14 @@ export function TableReservation() {
           type="date"
           id="date"
           name="date"
+          min={today}
           value={InputDateValue}
           onChange={saveTheDate}
         />
       </label>
-      <button
-        type="submit"
-        onClick={() => {
-          saveData()
-        }}
-      >
+      <button type="submit" onClick={checkData}>
         Spara
       </button>
-
-      <button onClick={checkData}>Kolla</button>
 
       {ShowBtn18 ? (
         <div>
@@ -139,7 +130,15 @@ export function TableReservation() {
         <div></div>
       )}
 
-      {ShowUserForm ? <UserForm time={Time}></UserForm> : <div></div>}
+      {ShowUserForm ? (
+        <UserForm
+          time={Time}
+          date={InputDateValue}
+          people={+InputNumValue}
+        ></UserForm>
+      ) : (
+        <div></div>
+      )}
     </>
   )
 }

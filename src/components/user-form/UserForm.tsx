@@ -1,29 +1,50 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ICreateReserve } from '../../models/interfaces/ICreateReserve'
+import { User } from '../../models/interfaces/User'
+import { GetDataServices } from '../../services/GetDataServices'
+import { TableReservation } from '../table-reservation/TableReservation'
+import {  ThanksForReservation } from '../thanksCom/ThanksForReservation'
 
-interface INewCustomer {
-  firstname: string;
-  lastname: string;
-  mobil: number;
-  email: string;
+export interface IGetTimeProps {
+  date: string
+  time: string
+  people: number
 }
 
-export function UserForm() {
-  const [newCustomer, setNewCustomer] = useState<INewCustomer>({
-    firstname: "",
-    lastname: "",
-    mobil: 0,
-    email: "",
-  });
-  function handleClick(e: ChangeEvent<HTMLInputElement>) {
-    let name = e.target.name;
+export function UserForm(props: IGetTimeProps) {
+  const [newCustomer, setNewCustomer] = useState<User>({
+    name: '',
+    lastname: '',
+    email: '',
+    phone: '',
+  })
 
-    setNewCustomer({ ...newCustomer, [name]: e.target.value });
+  const [ShowBtn, setShowBtn] = useState(false)
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    let name = e.target.name
+
+    setNewCustomer({ ...newCustomer, [name]: e.target.value })
   }
-  console.log(newCustomer);
 
-  const handleClickWithArgs = (msg: string) => {
-    console.log(msg);
-  };
+  const handleClick = () => {
+    let num = props.people
+    let CreateReserve: ICreateReserve = {
+      restaurantId: '624c2f5347678330c7a5c58e',
+      date: `${props.date}`,
+      time: `${props.time}`,
+      numberOfGuests: num,
+      customer: newCustomer,
+    }
+
+    let postData = new GetDataServices()
+    postData.createBooking(CreateReserve)
+
+    //  return <ThanksForReservation name={newCustomer.name} date={props.date} time={props.time} />
+
+    // setShowBtn(true)
+  }
 
   return (
     <>
@@ -31,37 +52,41 @@ export function UserForm() {
         <label>Förnamn</label>
         <input
           type="text"
-          name="firstname"
-          value={newCustomer.firstname}
-          onChange={handleClick}
+          name="name"
+          value={newCustomer.name}
+          onChange={handleChange}
         />
+        <label>Efternamn</label>
         <input
           type="text"
           name="lastname"
           value={newCustomer.lastname}
-          onChange={handleClick}
+          onChange={handleChange}
         />
+        <label>Mobil</label>
         <input
           type="text"
-          name="mobil"
-          value={newCustomer.mobil}
-          onChange={handleClick}
+          name="phone"
+          value={newCustomer.phone}
+          onChange={handleChange}
         />
+        <label>Email</label>
         <input
           type="email"
           name="email"
           value={newCustomer.email}
-          onChange={handleClick}
+          onChange={handleChange}
         />
       </form>
-      <button
-        type="button"
-        onClick={() => {
-          handleClickWithArgs("Det fungerar!");
-        }}
-      >
-        Spara Bokning
-      </button>
+      {/* {ShowBtn ? (
+       <ThanksForReservation/>
+      ) : ( */}
+
+      <Link to="/thanksForReservation">
+        <button type="button" onClick={handleClick}>
+          Spara Bokning
+        </button>
+      </Link>
     </>
-  );
+  )
 }

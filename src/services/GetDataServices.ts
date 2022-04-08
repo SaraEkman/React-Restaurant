@@ -16,21 +16,10 @@ export class GetDataServices {
     )
     return bookingsData.data
   }
-  createBooking(){
+  createBooking(boking:ICreateReserve){
     axios.post<ICreateReserve>(
       'https://school-restaurant-api.azurewebsites.net/booking/create',
-      {
-        restaurantId: '624c2f5347678330c7a5c58e',
-        date: '2022-04-05',
-        time: '21:00',
-        numberOfGuests: 4,
-        customer: {
-          name: 'Sara',
-          lastname: 'Ekman',
-          email: 'gdhdt@gg.com',
-          phone: '089258233',
-        },
-      },
+     boking,
       {
         headers: {
           'content-type': 'application/json',
@@ -38,4 +27,5 @@ export class GetDataServices {
       },
     ).then((data)=>console.log(data)).catch((erro)=>console.log("Error", erro))
   }
+ 
 }
