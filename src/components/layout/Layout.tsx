@@ -5,7 +5,8 @@ export function Layout(){
  return(
     <React.Fragment>
         <nav>
-            <ul>
+             <ul>
+                 <li><Link to={''}>Hom</Link></li>
                 <li><Link to={'/about'}>Om oss</Link></li>
                 <li><Link to={'/contact'}>Kontakt</Link></li>
                 <li><Link to={'/menu'}>Meny</Link></li>
