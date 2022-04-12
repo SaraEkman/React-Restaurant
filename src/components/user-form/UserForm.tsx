@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import { ICreateReserve } from '../../models/interfaces/ICreateReserve'
 import { User } from '../../models/interfaces/User'
 import { GetDataServices } from '../../services/GetDataServices'
-import { TableReservation } from '../table-reservation/TableReservation'
-import {  ThanksForReservation } from '../thanksCom/ThanksForReservation'
 
 export interface IGetTimeProps {
   date: string
@@ -19,8 +17,6 @@ export function UserForm(props: IGetTimeProps) {
     email: '',
     phone: '',
   })
-
-  const [ShowBtn, setShowBtn] = useState(false)
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     let name = e.target.name
@@ -40,10 +36,9 @@ export function UserForm(props: IGetTimeProps) {
 
     let postData = new GetDataServices()
     postData.createBooking(CreateReserve)
+    let saveInf = [newCustomer.name, props.time, props.date]
 
-    //  return <ThanksForReservation name={newCustomer.name} date={props.date} time={props.time} />
-
-    // setShowBtn(true)
+    localStorage.setItem('ReservationInfo', JSON.stringify(saveInf))
   }
 
   return (
@@ -78,10 +73,6 @@ export function UserForm(props: IGetTimeProps) {
           onChange={handleChange}
         />
       </form>
-      {/* {ShowBtn ? (
-       <ThanksForReservation/>
-      ) : ( */}
-
       <Link to="/thanksForReservation">
         <button type="button" onClick={handleClick}>
           Spara Bokning
