@@ -22,7 +22,7 @@ export function Layout() {
             <Link to={"/table-reservation"}>Boka bord</Link>
           </li>
           <li>
-            <Link to={"/admin"}>Logga in</Link>
+            <Link to={"/admin"}>Admin</Link>
           </li>
         </ul>
       </nav>
