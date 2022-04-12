@@ -42,10 +42,10 @@ export function Home() {
             distinctio in.
           </p>
         </div>
-        <img src="../images/pasta-luxe.jpg" width="100%" height="auto" />
+        <img src="../images/pasta-luxe.jpg" width="100%" height="auto" alt="pasta"/>
       </div>
       <div className="employeesContent">
-        <img src="../images/chef.jpg" width="100%" height="auto" />
+        <img src="../images/chef.jpg" width="100%" height="auto" alt="chef"/>
         <div>
           <h2>Vår pesonal</h2>
           <p>
@@ -73,7 +73,7 @@ export function Home() {
               nesciunt aliquid iste eius ad?
             </p>
           </div>
-          <img src="../images/family.jpg" width="50%" height="auto" />
+          <img src="../images/family.jpg" width="50%" height="auto" alt="family"/>
         </div>
         <div className="friends">
           <div>
@@ -85,7 +85,7 @@ export function Home() {
               voluptatem, error culpa rerum asperiores!
             </p>
           </div>
-          <img src="../images/wine-food.jpg" width="50%" height="auto" />
+          <img src="../images/wine-food.jpg" width="50%" height="auto" alt="wine-food"/>
         </div>
       </div>
     </section>
