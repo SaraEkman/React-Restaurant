@@ -35,7 +35,12 @@ export function Home() {
             nihil, perferendis dolorum nemo. Harum libero sint consectetur cum
             numquam aperiam enim!
           </p>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos ratione dolor sit illum quibusdam, eius a odio maiores, nesciunt dolores officiis quod totam, nulla quam. Eius ad deserunt distinctio in.</p>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Dignissimos ratione dolor sit illum quibusdam, eius a odio maiores,
+            nesciunt dolores officiis quod totam, nulla quam. Eius ad deserunt
+            distinctio in.
+          </p>
         </div>
         <img src="../images/pasta-luxe.jpg" width="100%" height="auto" />
       </div>
@@ -49,7 +54,12 @@ export function Home() {
             perspiciatis, corporis labore animi at ducimus architecto maiores
             doloremque, laborum nulla et fugit.
           </p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, et! Quasi cumque facilis sed ea illo quam repudiandae molestiae amet, veniam nisi voluptatibus in excepturi voluptatem recusandae voluptate, eaque ab.</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, et!
+            Quasi cumque facilis sed ea illo quam repudiandae molestiae amet,
+            veniam nisi voluptatibus in excepturi voluptatem recusandae
+            voluptate, eaque ab.
+          </p>
         </div>
       </div>
       <div className="aboutContent">
@@ -62,7 +72,6 @@ export function Home() {
               fugiat placeat quaerat. Quaerat aperiam et, voluptatum dolorum ut
               nesciunt aliquid iste eius ad?
             </p>
-           
           </div>
           <img src="../images/family.jpg" width="50%" height="auto" />
         </div>
@@ -75,14 +84,12 @@ export function Home() {
               quasi vitae, doloribus tenetur praesentium aliquam itaque
               voluptatem, error culpa rerum asperiores!
             </p>
-            
           </div>
           <img src="../images/wine-food.jpg" width="50%" height="auto" />
         </div>
       </div>
     </section>
   );
-
 
   // useEffect(() => {
   //    axios

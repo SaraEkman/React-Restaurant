@@ -4,15 +4,16 @@ $darkblue:rgb(0,51,78);
 $lightblue:rgb(85,136,163);
 $mediumablue:rgb(20,83,116); */
 
-h2, h3 {
+h2,
+h3 {
     font-family: 'Cinzel', serif;
 }
 
 p {
     font-family: 'PT Serif', serif;
     font-size: large;
-letter-spacing: 1px;
-margin-top: 5px;
+    letter-spacing: 1px;
+    margin-top: 5px;
 }
 
 /* Navigering */

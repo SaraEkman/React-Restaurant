@@ -1,12 +1,14 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import './layout.css';
+import "./layout.css";
 
 export function Layout() {
   return (
     <React.Fragment>
       <nav className="nav">
-        <h1>Pastolino<span>🍝</span></h1>
+        <h1>
+          Pastolino<span>🍝</span>
+        </h1>
         <ul>
           <li>
             <Link to={""}>Hem</Link>
@@ -26,26 +28,39 @@ export function Layout() {
         </ul>
       </nav>
       <main>
-        <Outlet></Outlet>
+        <Outlet />
       </main>
       <footer>
         <div className="adress">
           <h3>Kontakt information</h3>
           <address>
-          Pastolino<br></br>
-          Kungsportsavenyn 22<br></br>
-          411 36 Göteborg <br></br><br></br>
-          <a href="contact@pastolino.com" className="mail">contact@pastolino.com</a><br></br><br></br>
-
-          Telefon: <a href="tel:+46761364241" className="phoneNumber">0761364241</a>
+            Pastolino<br />
+            Kungsportsavenyn 22<br />
+            411 36 Göteborg <br />
+            <br />
+            <a href="contact@pastolino.com" className="mail">
+              contact@pastolino.com
+            </a>
+            <br />
+            <br />
+            Telefon:{" "}
+            <a href="tel:+46761364241" className="phoneNumber">
+              0761364241
+            </a>
           </address>
         </div>
         <div className="socialMedia">
           <h3>Följ oss på:</h3>
           <ul>
-            <li><a href="https://www.linkedin.com/">Linkedin</a></li>
-            <li><a href="https://www.facebook.com/">Facebook</a></li>
-            <li><a href="https://www.instagram.com/">Instagram</a></li>
+            <li>
+              <a href="https://www.linkedin.com/">Linkedin</a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/">Facebook</a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/">Instagram</a>
+            </li>
           </ul>
         </div>
       </footer>

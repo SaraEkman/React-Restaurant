@@ -16,9 +16,9 @@
     color: rgb(255, 255, 255);
     border-radius: 10px;
     text-transform: uppercase;
-     font-family: 'Cinzel', serif;
-font-weight: bold;
-letter-spacing: 1px;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .buttonsDiv:hover {
@@ -69,37 +69,44 @@ letter-spacing: 1px;
     .employeesContent {
         flex-direction: row;
     }
-    .aboutContent{
+
+    .aboutContent {
         display: flex;
         flex-direction: row;
     }
-    .friends{
+
+    .friends {
         flex-direction: row;
     }
-    .mainSection img{
+
+    .mainSection img {
         width: 50%;
         /* max-width: 436px; */
-        height: auto;   
+        height: auto;
     }
+
     .mainSection h2 {
-        color:rgb(0,51,78);
+        color: rgb(0, 51, 78);
         text-align: center;
-            }
-     .mainSection p {
+    }
+
+    .mainSection p {
         text-align: center;
-     }
-.pastaContent div,
-.employeesContent div {
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-}
-.family div,
-.friends div {
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-}
+    }
+
+    .pastaContent div,
+    .employeesContent div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .family div,
+    .friends div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
 }
