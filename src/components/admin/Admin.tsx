@@ -11,7 +11,6 @@ export function Admin() {
       .getBookings("624c2f5347678330c7a5c58e")
       .then((bookings) => setBookings(bookings));
   }, []);
-  console.log(bookings);
 
-  return <p>Dessa bokningar finns: {bookings}</p>;
+  return <p>Dessa bokningar finns: {bookings.length}</p>;
 }
