@@ -1,6 +1,6 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
-import "./layout.css";
+import React from 'react'
+import { Link, Outlet } from 'react-router-dom'
+import './layout.css'
 
 export function Layout() {
   return (
@@ -11,19 +11,19 @@ export function Layout() {
         </h1>
         <ul>
           <li>
-            <Link to={""}>Hem</Link>
+            <Link to={''}>Hem</Link>
           </li>
           <li>
-            <Link to={"/contact"}>Kontakt</Link>
+            <Link to={'/contact'}>Kontakt</Link>
           </li>
           <li>
-            <Link to={"/menu"}>Meny</Link>
+            <Link to={'/menu'}>Meny</Link>
           </li>
           <li>
-            <Link to={"/table-reservation"}>Boka bord</Link>
+            <Link to={'/table-reservation'}>Boka bord</Link>
           </li>
           <li>
-            <Link to={"/admin"}>Admin</Link>
+            <Link to={'/admin'}>Admin</Link>
           </li>
         </ul>
       </nav>
@@ -34,8 +34,10 @@ export function Layout() {
         <div className="adress">
           <h3>Kontakt information</h3>
           <address>
-            Pastolino<br />
-            Kungsportsavenyn 22<br />
+            Pastolino
+            <br />
+            Kungsportsavenyn 22
+            <br />
             411 36 Göteborg <br />
             <br />
             <a href="contact@pastolino.com" className="mail">
@@ -43,7 +45,7 @@ export function Layout() {
             </a>
             <br />
             <br />
-            Telefon:{" "}
+            Telefon:{' '}
             <a href="tel:+46761364241" className="phoneNumber">
               0761364241
             </a>
@@ -65,5 +67,5 @@ export function Layout() {
         </div>
       </footer>
     </React.Fragment>
-  );
+  )
 }

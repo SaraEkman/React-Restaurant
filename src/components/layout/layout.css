@@ -6,142 +6,139 @@ $mediumablue:rgb(20,83,116); */
 
 h2,
 h3 {
-    font-family: 'Cinzel', serif;
+  font-family: 'Cinzel', serif;
 }
 
 p {
-    font-family: 'PT Serif', serif;
-    font-size: large;
-    letter-spacing: 1px;
-    margin-top: 5px;
+  font-family: 'PT Serif', serif;
+  font-size: large;
+  letter-spacing: 1px;
+  margin-top: 5px;
 }
 
 /* Navigering */
 .nav {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .nav h1 {
-    font-family: 'Babylonica', cursive;
-    font-size: 5rem;
-    margin: 0;
-    justify-content: flex-start;
+  font-family: 'Babylonica', cursive;
+  font-size: 5rem;
+  margin: 0;
+  justify-content: flex-start;
 }
 
 .nav h1 span {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 .nav ul {
-    padding: 0%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+  padding: 0%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .nav ul li {
-    list-style: none;
-    text-align: center;
-    font-family: 'Cinzel', serif;
+  list-style: none;
+  text-align: center;
+  font-family: 'Cinzel', serif;
 }
 
 .nav ul li a {
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: black;
 }
 
 .nav ul li a:hover {
-    color: rgb(85, 136, 163);
-    font-weight: bold;
-
+  color: rgb(85, 136, 163);
+  font-weight: bold;
 }
 
 main {
-    width: 100%;
-    min-height: 60vw;
+  width: 100%;
+  min-height: 60vw;
 }
-
 
 /* Footer  */
 footer {
-    background-color: rgb(0, 51, 78);
-    bottom: 0;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding-bottom: 10px;
-    flex-wrap: wrap;
-
+  background-color: rgb(0, 51, 78);
+  bottom: 0;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 footer ul {
-    padding-left: 0%;
-    margin: 0;
-    font-size: 1rem;
-    padding-right: 10px;
+  padding-left: 0%;
+  margin: 0;
+  font-size: 1rem;
+  padding-right: 10px;
 }
 
 footer ul li {
-    margin: 0;
-    list-style: none;
+  margin: 0;
+  list-style: none;
 }
 
 footer ul li a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    padding: 3px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  padding: 3px;
 }
 
 /* Adress */
 .adress {
-    padding-left: 1em;
+  padding-left: 1em;
 }
 
 .adresss address {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .adress address a {
-    font-size: 1rem;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 .mail {
-    border: 1px solid rgb(255, 255, 255);
-    padding: 0.5em;
-    margin: 2em 0;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 0.5em;
+  margin: 2em 0;
 }
 
 /* Endast för skärm över 600px breda */
 @media only screen and (min-width: 600px) {
-    .nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0px 10px;
-    }
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+  }
 
-    .nav h1 span {
-        font-size: 5rem;
-    }
+  .nav h1 span {
+    font-size: 5rem;
+  }
 
-    .nav ul {
-        gap: 25px;
-    }
+  .nav ul {
+    gap: 25px;
+  }
 
-    footer {
-        justify-content: space-evenly;
-    }
+  footer {
+    justify-content: space-evenly;
+  }
 
-    footer a:hover {
-        background-color: rgb(20, 83, 116);
-        border-radius: 10px;
-    }
+  footer a:hover {
+    background-color: rgb(20, 83, 116);
+    border-radius: 10px;
+  }
 }

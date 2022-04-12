@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import "./home.css";
+import { Link } from 'react-router-dom'
+import './home.css'
 
 export function Home() {
   // const [id,setId]=useState("")
@@ -16,13 +16,13 @@ export function Home() {
   return (
     <section className="mainSection">
       <div
-        style={{ backgroundImage: "url(../images/colosseum.jpg)" }}
+        style={{ backgroundImage: 'url(../images/colosseum.jpg)' }}
         className="buttonsDiv"
       >
-        <Link to={"/table-reservation"}>
-          {" "}<button>Boka bord</button>
+        <Link to={'/table-reservation'}>
+          <button>Boka bord</button>
         </Link>
-        <Link to={"/menu"}>
+        <Link to={'/menu'}>
           <button>Meny</button>
         </Link>
       </div>
@@ -42,10 +42,15 @@ export function Home() {
             distinctio in.
           </p>
         </div>
-        <img src="../images/pasta-luxe.jpg" width="100%" height="auto" alt="pasta"/>
+        <img
+          src="../images/pasta-luxe.jpg"
+          width="100%"
+          height="auto"
+          alt="pasta"
+        />
       </div>
       <div className="employeesContent">
-        <img src="../images/chef.jpg" width="100%" height="auto" alt="chef"/>
+        <img src="../images/chef.jpg" width="100%" height="auto" alt="chef" />
         <div>
           <h2>Vår pesonal</h2>
           <p>
@@ -73,7 +78,12 @@ export function Home() {
               nesciunt aliquid iste eius ad?
             </p>
           </div>
-          <img src="../images/family.jpg" width="50%" height="auto" alt="family"/>
+          <img
+            src="../images/family.jpg"
+            width="50%"
+            height="auto"
+            alt="family"
+          />
         </div>
         <div className="friends">
           <div>
@@ -85,11 +95,16 @@ export function Home() {
               voluptatem, error culpa rerum asperiores!
             </p>
           </div>
-          <img src="../images/wine-food.jpg" width="50%" height="auto" alt="wine-food"/>
+          <img
+            src="../images/wine-food.jpg"
+            width="50%"
+            height="auto"
+            alt="wine-food"
+          />
         </div>
       </div>
     </section>
-  );
+  )
 
   // useEffect(() => {
   //    axios

@@ -1,112 +1,113 @@
 .buttonsDiv {
-    width: auto;
-    height: 500px;
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: auto;
+  height: 500px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .buttonsDiv button {
-    background-color: rgb(0, 51, 78);
-    height: 5em;
-    width: 10em;
-    color: rgb(255, 255, 255);
-    border-radius: 10px;
-    text-transform: uppercase;
-    font-family: 'Cinzel', serif;
-    font-weight: bold;
-    letter-spacing: 1px;
+  background-color: rgb(0, 51, 78);
+  height: 5em;
+  width: 10em;
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .buttonsDiv:hover {
-    background-color: rgb(85, 136, 163);
+  background-color: rgb(85, 136, 163);
 }
 
 .pastaContent {
-    display: flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .employeesContent {
-    display: flex;
-    flex-direction: column-reverse;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .pastaContent div,
 .employeesContent div {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .family {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .family div {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .friends {
-    display: flex;
-    flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .friends div {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 /* Endast för skärm över 600px breda */
 @media only screen and (min-width: 600px) {
-    .pastaContent {
-        flex-direction: row;
+  .buttonsDiv {
+    height: 1000px;
+  }
+  .pastaContent {
+    flex-direction: row;
+  }
 
-    }
+  .employeesContent {
+    flex-direction: row;
+  }
 
-    .employeesContent {
-        flex-direction: row;
-    }
+  .aboutContent {
+    display: flex;
+    flex-direction: row;
+  }
 
-    .aboutContent {
-        display: flex;
-        flex-direction: row;
-    }
+  .friends {
+    flex-direction: row;
+  }
 
-    .friends {
-        flex-direction: row;
-    }
+  .mainSection img {
+    width: 50%;
+    /* max-width: 436px; */
+    height: auto;
+  }
 
-    .mainSection img {
-        width: 50%;
-        /* max-width: 436px; */
-        height: auto;
-    }
+  .mainSection h2 {
+    color: rgb(0, 51, 78);
+    text-align: center;
+  }
 
-    .mainSection h2 {
-        color: rgb(0, 51, 78);
-        text-align: center;
-    }
+  .mainSection p {
+    text-align: center;
+  }
 
-    .mainSection p {
-        text-align: center;
-    }
+  .pastaContent div,
+  .employeesContent div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 
-    .pastaContent div,
-    .employeesContent div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .family div,
-    .friends div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
+  .family div,
+  .friends div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
