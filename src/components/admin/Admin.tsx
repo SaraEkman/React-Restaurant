@@ -16,6 +16,9 @@
 // }
 
 import { ChangeEvent, useState } from 'react'
+import { Button } from '../styled-com/Button'
+import { Div } from '../styled-com/Div'
+import "./admin.css"
 
 export function Admin() {
   const [Name, setName] = useState('')
@@ -42,15 +45,14 @@ export function Admin() {
   return (
     <>
       {Show === false && (
-        <div>
+        <Div className='logInDiv'>
           <label>Admins Namn</label>
           <input type="text" value={Name} onChange={handleChangName} />
           <label>Lösenord</label>
-          <input type="text" value={PassWord} onChange={handleChangPassWord} />
-          <button onClick={handleClick}>Logga in</button>
-        </div>
+          <input type="password" value={PassWord} onChange={handleChangPassWord} />
+          <Button onClick={handleClick} className="loginBtn">Logga in</Button>
+        </Div>
       )}
-      <p>Admin works!</p>
     </>
   )
 }

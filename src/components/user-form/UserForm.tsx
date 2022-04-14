@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { ICreateReserve } from '../../models/interfaces/ICreateReserve'
 import { User } from '../../models/interfaces/User'
 import { GetDataServices } from '../../services/GetDataServices'
+import { Button } from '../styled-com/Button'
+import "./userForm.css"
 
 export interface IGetTimeProps {
   date: string
@@ -42,42 +44,40 @@ export function UserForm(props: IGetTimeProps) {
   }
 
   return (
-    <>
-      <form>
-        <label>Förnamn</label>
-        <input
+    <div>
+      <form className='userFormDiv'>
+        <label>Förnamn: <input
           type="text"
           name="name"
           value={newCustomer.name}
           onChange={handleChange}
-        />
-        <label>Efternamn</label>
-        <input
+        /></label>
+        <label>Efternamn: <input
           type="text"
           name="lastname"
           value={newCustomer.lastname}
           onChange={handleChange}
-        />
-        <label>Mobil</label>
-        <input
+        /></label>
+        <label>Mobil: <input
           type="text"
           name="phone"
           value={newCustomer.phone}
           onChange={handleChange}
-        />
-        <label>Email</label>
-        <input
+        /></label>
+        <label>Email: <input
           type="email"
           name="email"
           value={newCustomer.email}
           onChange={handleChange}
-        />
+        /></label>
       </form>
-      <Link to="/thanksForReservation">
-        <button type="button" onClick={handleClick}>
+      <div className='userFormBtn'>
+         <Link to="/thanksForReservation" >
+        <Button  type="button" onClick={handleClick}>
           Spara Bokning
-        </button>
+        </Button>
       </Link>
-    </>
+     </div>
+    </div>
   )
 }

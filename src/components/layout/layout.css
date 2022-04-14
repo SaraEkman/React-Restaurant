@@ -16,6 +16,21 @@ p {
   margin-top: 5px;
 }
 
+input:focus {
+  outline: none;
+  border: 2px inset rgb(0, 51, 78);
+}
+
+.nav .active {
+  color: rgb(20, 83, 116);
+  text-decoration: underline;
+}
+
+label,
+input {
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+}
 /* Navigering */
 .nav {
   display: flex;
@@ -61,7 +76,7 @@ p {
 
 main {
   width: 100%;
-  min-height: 60vw;
+  min-height: 60vh;
 }
 
 /* Footer  */
@@ -131,6 +146,11 @@ footer ul li a {
 
   .nav ul {
     gap: 25px;
+  }
+
+  main {
+    width: 100%;
+    min-height: 71vh;
   }
 
   footer {

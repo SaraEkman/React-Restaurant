@@ -1,0 +1,20 @@
+.logInDiv {
+    justify-content: center;
+}
+
+.logInDiv label {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.logInDiv input {
+    width: 40%;
+    padding: 8px;
+    border: 2px inset black;
+    border-radius: 5px 0 5px 0;
+}
+
+.logInDiv .loginBtn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

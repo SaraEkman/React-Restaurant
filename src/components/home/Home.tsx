@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Button } from '../styled-com/Button'
 import './home.css'
 
 export function Home() {
@@ -20,10 +21,10 @@ export function Home() {
         className="buttonsDiv"
       >
         <Link to={'/table-reservation'}>
-          <button>Boka bord</button>
+          <Button>Boka bord</Button>
         </Link>
         <Link to={'/menu'}>
-          <button>Meny</button>
+          <Button>Meny</Button>
         </Link>
       </div>
       <div className="pastaContent">

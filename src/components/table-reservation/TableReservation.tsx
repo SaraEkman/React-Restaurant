@@ -1,7 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import { IReservation } from '../../models/interfaces/IReservation'
 import { GetDataServices } from '../../services/GetDataServices'
+import { Button } from '../styled-com/Button'
+import { Div } from '../styled-com/Div'
 import { UserForm } from '../user-form/UserForm'
+import './tableReservation.css'
 
 export function TableReservation() {
   const [ShowBtn18, setShowBtn18] = useState(false)
@@ -79,10 +82,9 @@ export function TableReservation() {
   let today = new Date().toLocaleDateString()
 
   return (
-    <>
+    <Div className='bookingDiv'>
       <label>
-        Antal personer:
-        <input
+        Antal personer: <input
           type="number"
           value={InputNumValue}
           max="6"
@@ -91,8 +93,7 @@ export function TableReservation() {
         />
       </label>
       <label>
-        Datum
-        <input
+        Datum: <input
           type="date"
           id="date"
           name="date"
@@ -101,28 +102,30 @@ export function TableReservation() {
           onChange={saveTheDate}
         />
       </label>
-      <button type="submit" onClick={checkData}>
+      <Button type="submit" onClick={checkData}>
         Spara
-      </button>
+      </Button>
 
-      {ShowBtn18 ? (
-        <div>
-          <button onClick={goToUserForm}>18:00</button>
-        </div>
-      ) : ShowError18 === true ? (
-        <div>Tiden klockan 18 är upptagen 😢</div>
-      ) : (
-        <div></div>
-      )}
-      {ShowBtn21 ? (
-        <div>
-          <button onClick={goToUserForm}>21:00</button>
-        </div>
-      ) : ShowError21 === true ? (
-        <div>Tiden klockan 21 är upptagen 😢</div>
-      ) : (
-        <div></div>
-      )}
+      <div className="btnDiv">
+        {ShowBtn18 ? (
+          <div>
+            <Button onClick={goToUserForm}>18:00</Button>
+          </div>
+        ) : ShowError18 === true ? (
+          <div>Tiden klockan 18 är upptagen 😢</div>
+        ) : (
+          <div></div>
+        )}
+        {ShowBtn21 ? (
+          <div >
+            <Button onClick={goToUserForm}>21:00</Button>
+          </div>
+        ) : ShowError21 === true ? (
+          <div>Tiden klockan 21 är upptagen 😢</div>
+        ) : (
+          <div></div>
+        )}
+      </div>
 
       {ShowError ? (
         <div>Tyvärr det finns inte tider i just denna datum 😰</div>
@@ -139,6 +142,6 @@ export function TableReservation() {
       ) : (
         <div></div>
       )}
-    </>
+      </Div>
   )
 }
