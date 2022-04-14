@@ -1,19 +1,21 @@
+import React from "react";
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap/";
+import { Button, Container } from "react-bootstrap/";
 import { IBooking } from "../../models/IBooking";
 import { GetAdminService } from "../../services/GetAdminService";
+import { UpdateBookingModal } from "./UpdateBookingModal";
 
 export function Admin() {
   const [bookings, setBookings] = useState<IBooking[]>([]);
+  const [modalUpdateShow, setModalUpdateShow] = useState<IBooking>();
 
   const service = new GetAdminService();
-  let getBookings = service.getBookings;
 
   useEffect(() => {
-    getBookings("624c2f5347678330c7a5c58e").then((bookings) =>
-      setBookings(bookings)
-    );
-  }, [getBookings]);
+    service
+      .getBookings("624c2f5347678330c7a5c58e")
+      .then((bookings) => setBookings(bookings));
+  }, []);
 
   function deleteBooking(id: string) {
     service.deleteBooking(id).then(() => {
@@ -24,7 +26,18 @@ export function Admin() {
     });
   }
 
-  let ShowBokings = bookings.map((booking, i) => {
+  function updateBooking(updatedBooking: IBooking) {
+    setModalUpdateShow(undefined);
+    service.changeBooking(updatedBooking).then(() => {
+      const changedBookings = bookings.map((booking) => {
+        if (booking._id === updatedBooking._id) return updatedBooking;
+        return booking;
+      });
+      setBookings(changedBookings);
+    });
+  }
+
+  let showBookings = bookings.map((booking, i) => {
     return (
       <div key={booking._id}>
         <p>id{booking._id}</p>
@@ -39,14 +52,26 @@ export function Admin() {
         >
           Avboka
         </button>
+        <Button variant="primary" onClick={() => setModalUpdateShow(booking)}>
+          Ändra
+        </Button>
       </div>
     );
   });
 
   return (
-    <>
+    <Container>
       <h3>Alla Bokningar :</h3>
-      <Container>{ShowBokings}</Container>
-    </>
+      {showBookings}
+      {modalUpdateShow && (
+        <UpdateBookingModal
+          onSaveChanges={updateBooking}
+          bookings={bookings}
+          booking={modalUpdateShow}
+          show={modalUpdateShow !== undefined}
+          onHide={() => setModalUpdateShow(undefined)}
+        />
+      )}
+    </Container>
   );
 }
