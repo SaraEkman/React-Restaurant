@@ -1,0 +1,12 @@
+.userFormDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 1rem;
+}
+
+.userFormBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
