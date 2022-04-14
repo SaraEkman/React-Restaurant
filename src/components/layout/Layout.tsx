@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import './layout.css'
 
 export function Layout() {
@@ -11,19 +11,30 @@ export function Layout() {
         </h1>
         <ul>
           <li>
-            <Link to={''}>Hem</Link>
+            <NavLink
+              to={''}>
+              Hem
+            </NavLink>
           </li>
           <li>
-            <Link to={'/contact'}>Kontakt</Link>
+            <NavLink to={'/contact'}>
+              Kontakt
+            </NavLink>
           </li>
           <li>
-            <Link to={'/menu'}>Meny</Link>
+            <NavLink  to={'/menu'} >
+              Meny
+            </NavLink>
           </li>
           <li>
-            <Link to={'/table-reservation'}>Boka bord</Link>
+            <NavLink to={'/table-reservation'} >
+              Boka bord
+            </NavLink>
           </li>
           <li>
-            <Link to={'/admin'}>Admin</Link>
+            <NavLink to={'/admin'}>
+              Admin
+            </NavLink>
           </li>
         </ul>
       </nav>

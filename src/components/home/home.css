@@ -9,22 +9,6 @@
   align-items: center;
 }
 
-.buttonsDiv button {
-  background-color: rgb(0, 51, 78);
-  height: 5em;
-  width: 10em;
-  color: rgb(255, 255, 255);
-  border-radius: 10px;
-  text-transform: uppercase;
-  font-family: 'Cinzel', serif;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.buttonsDiv:hover {
-  background-color: rgb(85, 136, 163);
-}
-
 .pastaContent {
   display: flex;
   flex-direction: column;
