@@ -2,12 +2,15 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap/";
 import { IBooking } from "../../models/IBooking";
+import { ICreateBooking } from "../../models/ICreateBooking";
 import { GetAdminService } from "../../services/GetAdminService";
+import { NewManualBokingModal } from "./NewManualBokingModal";
 import { UpdateBookingModal } from "./UpdateBookingModal";
 
 export function Admin() {
   const [bookings, setBookings] = useState<IBooking[]>([]);
   const [modalUpdateShow, setModalUpdateShow] = useState<IBooking>();
+  const [modalNewManualShow, setModalNewManualShow] = useState<boolean>(false);
 
   const service = new GetAdminService();
 
@@ -25,7 +28,14 @@ export function Admin() {
       setBookings(filteredBookings);
     });
   }
-
+  function createBooking(booking: ICreateBooking) {
+    service.createBooking(booking).then((data: IBooking) => {
+      console.log("Skapade en booking", data);
+      service
+        .getBookings("624c2f5347678330c7a5c58e")
+        .then((bookings) => setBookings(bookings));
+    });
+  }
   function updateBooking(updatedBooking: IBooking) {
     setModalUpdateShow(undefined);
     service.changeBooking(updatedBooking).then(() => {
@@ -61,6 +71,18 @@ export function Admin() {
 
   return (
     <Container>
+      <Button variant="primary" onClick={() => setModalNewManualShow(true)}>
+        Ny Bokning
+      </Button>
+
+      {modalNewManualShow && (
+        <NewManualBokingModal
+          show={modalNewManualShow}
+          onHide={() => setModalNewManualShow(false)}
+          bookings={bookings}
+          onSave={createBooking}
+        />
+      )}
       <h3>Alla Bokningar :</h3>
       {showBookings}
       {modalUpdateShow && (

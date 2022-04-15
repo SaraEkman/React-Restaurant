@@ -17,20 +17,27 @@ export function UpdateBookingModal(props: {
     twentyOne: number;
   }>({ eighteen: 0, twentyOne: 0 });
 
+  // Räkna ut antal bord som är lediga,
+  // vi börjar beräkningen när modalen laddas för första gängen och när datumet ändras.
+  //
   useEffect(() => {
-    if (booking?.date && props.bookings) {
+    // Finns datum och bokningar
+    if (booking.date && props.bookings) {
+      // Filtrera bort bokningar som inte är samma dag.
       const filteredBookings = props.bookings.filter((b) => {
-        return b.date === booking.date && b._id !== props.booking?._id;
+        return b.date === booking.date && b._id !== props.booking._id;
       });
+      // Beräkna antal bord som är lediga det datumet
+      // Reduce går igenom varenda bokning i filterdbokings kolla på
       const available1800Slots = filteredBookings.reduce(
-        (previousValue, currentValue) => {
-          if (currentValue.date === "18:00") {
+        (numberOfFreeTables, oneOfExsistingBookings) => {
+          if (oneOfExsistingBookings.date === "18:00") {
             const numberOfTablesBooked = Math.ceil(
-              currentValue.numberOfGuests / 6
+              oneOfExsistingBookings.numberOfGuests / 6
             );
-            return previousValue - numberOfTablesBooked;
+            return numberOfFreeTables - numberOfTablesBooked;
           } else {
-            return previousValue;
+            return numberOfFreeTables;
           }
         },
         15
@@ -54,7 +61,7 @@ export function UpdateBookingModal(props: {
         twentyOne: available2100Slots,
       });
     }
-  }, [booking?.date, props.bookings]);
+  }, [booking.date, props.booking._id, props.bookings]);
 
   useEffect(() => {
     if (props.booking) {
@@ -67,16 +74,15 @@ export function UpdateBookingModal(props: {
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     console.log("handlechange", name, value);
-    if (booking) {
-      setBooking({ ...booking, [name]: value });
-    }
+
+    setBooking({ ...booking, [name]: value });
   }
   function changeDate(e: ChangeEvent<HTMLInputElement>) {
-    if (booking) setBooking({ ...booking, time: "", date: e.target.value });
+    setBooking({ ...booking, time: "", date: e.target.value });
   }
 
   function setTime(time: string) {
-    if (booking) setBooking({ ...booking, time });
+    setBooking({ ...booking, time });
   }
 
   return (
@@ -86,7 +92,7 @@ export function UpdateBookingModal(props: {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
           Bokning {booking?._id}
         </Modal.Title>
@@ -100,7 +106,6 @@ export function UpdateBookingModal(props: {
               name="numberOfGuests"
               type="number"
               defaultValue={booking.numberOfGuests}
-              placeholder="Enter email"
             />
           </Form.Group>
 

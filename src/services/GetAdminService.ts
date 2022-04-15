@@ -1,5 +1,6 @@
 import axios from "axios";
 import { IBooking } from "../models/IBooking";
+import { ICreateBooking } from "../models/ICreateBooking";
 
 export class GetAdminService {
   async getBookings(id: string): Promise<IBooking[]> {
@@ -11,6 +12,13 @@ export class GetAdminService {
   async deleteBooking(id: string): Promise<any> {
     let response = await axios.delete(
       `https://school-restaurant-api.azurewebsites.net/booking/delete/${id}`
+    );
+    return response.data;
+  }
+  async createBooking(booking: ICreateBooking): Promise<any> {
+    let response = await axios.post(
+      `https://school-restaurant-api.azurewebsites.net/booking/create`,
+      booking
     );
     return response.data;
   }
