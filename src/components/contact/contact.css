@@ -1,0 +1,87 @@
+.contactUs address {
+  font-family: 'PT Serif', serif;
+  font-size: 1.5rem;
+  padding: 8px;
+}
+
+.contactUs address a {
+  text-decoration: none;
+  color: black;
+}
+
+.mail {
+  border: 2px solid rgb(0, 51, 78);
+}
+
+.contactUs .map {
+  position: relative;
+  height: 400px;
+  background-size: 300%;
+  background-image: url('../../../public/images/map.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-size 1s ease-in;
+}
+
+.contactUs .map:active {
+  background-size: 400%;
+  transition-timing-function: ease-in-out;
+  transition: background-size 1s ease-in;
+}
+
+.contactUs .map span {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+}
+
+.addressForm {
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.addressForm input {
+  margin: 8px;
+  width: 100%;
+}
+
+.addressForm textarea {
+  width: 95%;
+}
+
+.addressForm button {
+  margin-top: 8px;
+}
+
+@media only screen and (min-width: 500px) {
+  .contactContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .contactUs {
+    width: 50%;
+  }
+
+  .addressForm {
+    width: 50%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .contactUs .map {
+    background-size: 200%;
+  }
+
+  .addressForm input {
+    padding: 8px;
+    margin: 10px;
+  }
+}

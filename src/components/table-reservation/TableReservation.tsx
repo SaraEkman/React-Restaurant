@@ -17,57 +17,65 @@ export function TableReservation() {
 
   const [InputDateValue, setInputDateValue] = useState('')
   const [InputNumValue, setInputNumValue] = useState('')
+  const [NumOfTables, setNumOfTables] = useState(0)
   const [Bookings, setBookings] = useState<IReservation[]>([])
-
-  const saveTheDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputDateValue(e.target.value)
-  }
-
-  const saveNumOfPeople = (e: any) => {
-    setInputNumValue(e.target.value)
-  }
-
+  // Hämtar bokningar
   useEffect(() => {
     let getBookingsApi = new GetDataServices()
     getBookingsApi.getBookings().then((bookingsData) => {
       setBookings(bookingsData)
     })
   }, [])
-
+  // Sparar datum som användaren väljer
+  const saveTheDate = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputDateValue(e.target.value)
+  }
+  // Sparar antal personer
+  const saveNumOfPeople = (e: any) => {
+    setInputNumValue(e.target.value)
+  }
+  // Vi kontrollerar data och kollar om det finns ledig tid-körs på hitta tid knappen
   const checkData = () => {
-    let same: IReservation[] = []
+    // Skapar en lista som innehåller alla bokningar på det datumet användaren har valt
+    let sameDate: IReservation[] = []
     setShowUserForm(false)
     setShowBtn18(true)
     setShowBtn21(true)
 
     Bookings.map((boking) => {
       if (boking.date === InputDateValue) {
-        same.push(boking)
+        sameDate.push(boking)
       }
     })
 
-    let lists18: IReservation[] = []
-    let lists21: IReservation[] = []
+    const numOfTables = Math.ceil(+InputNumValue / 6)
+    setNumOfTables(numOfTables)
 
-    same.map((boking) => {
+    let list18: IReservation[] = []
+    let list21: IReservation[] = []
+
+    sameDate.map((boking) => {
       if (boking.time === '18:00') {
-        lists18.push(boking)
+        list18.push(boking)
       } else if (boking.time === '21:00') {
-        lists21.push(boking)
+        list21.push(boking)
       }
     })
 
-    if (lists18.length >= 15) {
-      console.log(lists18.length)
+    if (list18.length > 15 - numOfTables) {
+      console.log(list18.length)
       setShowBtn18(false)
       setShowError18(true)
     }
-    if (lists21.length >= 15) {
-      console.log(lists21.length)
+    if (list21.length > 15 - numOfTables) {
+      console.log(list21.length)
       setShowBtn21(false)
       setShowError21(true)
     }
-    if (lists18.length >= 15 && lists21.length >= 15) {
+    if (
+      list18.length > 15 - numOfTables &&
+      list21.length > 15 - numOfTables
+    ) {
       setShowError(true)
       setShowError18(false)
       setShowError21(false)
@@ -75,6 +83,7 @@ export function TableReservation() {
   }
 
   const goToUserForm = (e: any) => {
+    // sparar tiden från knappen (18 eller 21) för att kunna skicka vidare
     setTime(e.target.innerHTML)
     setShowUserForm(true)
   }
@@ -82,29 +91,30 @@ export function TableReservation() {
   let today = new Date().toLocaleDateString()
 
   return (
-    <Div className='bookingDiv'>
-      <label>
-        Antal personer: <input
-          type="number"
-          value={InputNumValue}
-          max="6"
-          min="1"
-          onChange={saveNumOfPeople}
-        />
-      </label>
-      <label>
-        Datum: <input
-          type="date"
-          id="date"
-          name="date"
-          min={today}
-          value={InputDateValue}
-          onChange={saveTheDate}
-        />
-      </label>
-      <Button type="submit" onClick={checkData}>
-        Spara
-      </Button>
+    <Div className="bookingDiv">
+        <label>
+          Antal personer:{' '}
+          <input
+            type="number"
+            value={InputNumValue}
+            min="1"
+            onChange={saveNumOfPeople}
+          />
+        </label>
+        <label>
+          Datum:{' '}
+          <input
+            type="date"
+            id="date"
+            name="date"
+            min={today}
+            value={InputDateValue}
+            onChange={saveTheDate}
+          />
+        </label>
+        <Button type="submit" onClick={checkData}>
+          Hitta tid
+        </Button>
 
       <div className="btnDiv">
         {ShowBtn18 ? (
@@ -112,23 +122,23 @@ export function TableReservation() {
             <Button onClick={goToUserForm}>18:00</Button>
           </div>
         ) : ShowError18 === true ? (
-          <div>Tiden klockan 18 är upptagen 😢</div>
+          <div>Tiden klockan 18 är upptagen</div>
         ) : (
           <div></div>
         )}
         {ShowBtn21 ? (
-          <div >
+          <div>
             <Button onClick={goToUserForm}>21:00</Button>
           </div>
         ) : ShowError21 === true ? (
-          <div>Tiden klockan 21 är upptagen 😢</div>
+          <div>Tiden klockan 21 är upptagen</div>
         ) : (
           <div></div>
         )}
       </div>
 
       {ShowError ? (
-        <div>Tyvärr det finns inte tider i just denna datum 😰</div>
+        <div>Tyvärr det finns ingen ledig tid för valda datumet 😰</div>
       ) : (
         <div></div>
       )}
@@ -138,10 +148,11 @@ export function TableReservation() {
           time={Time}
           date={InputDateValue}
           people={+InputNumValue}
+          numOfTables={NumOfTables}
         ></UserForm>
       ) : (
         <div></div>
       )}
-      </Div>
+    </Div>
   )
 }

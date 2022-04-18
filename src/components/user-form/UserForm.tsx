@@ -10,6 +10,7 @@ export interface IGetTimeProps {
   date: string
   time: string
   people: number
+  numOfTables: number
 }
 
 export function UserForm(props: IGetTimeProps) {
@@ -27,6 +28,7 @@ export function UserForm(props: IGetTimeProps) {
   }
 
   const handleClick = () => {
+    // Postar info till apiet
     let num = props.people
     let CreateReserve: ICreateReserve = {
       restaurantId: '624c2f5347678330c7a5c58e',
@@ -35,12 +37,14 @@ export function UserForm(props: IGetTimeProps) {
       numberOfGuests: num,
       customer: newCustomer,
     }
-
-    let postData = new GetDataServices()
-    postData.createBooking(CreateReserve)
-    let saveInf = [newCustomer.name, props.time, props.date]
-
-    localStorage.setItem('ReservationInfo', JSON.stringify(saveInf))
+    let saveInfo:any = []
+    for (let i = 1; i <= props.numOfTables; i++){
+      let postData = new GetDataServices()
+      postData.createBooking(CreateReserve)
+      saveInfo = [newCustomer.name, props.time, props.date]
+      console.log(props.numOfTables);
+    }
+    localStorage.setItem('ReservationInfo', JSON.stringify(saveInfo))
   }
 
   return (

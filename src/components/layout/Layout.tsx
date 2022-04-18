@@ -6,35 +6,27 @@ export function Layout() {
   return (
     <React.Fragment>
       <nav className="nav">
+        {/* loggo */}
         <h1>
           Pastolino<span>🍝</span>
         </h1>
         <ul>
           <li>
-            <NavLink
-              to={''}>
-              Hem
-            </NavLink>
+            <NavLink to={''}>Hem</NavLink>
           </li>
           <li>
-            <NavLink to={'/contact'}>
-              Kontakt
-            </NavLink>
+            <NavLink to={'/table-reservation'}>Boka bord</NavLink>
+          </li>
+
+          <li>
+            <NavLink to={'/menu'}>Meny</NavLink>
+          </li>
+
+          <li>
+            <NavLink to={'/contact'}>Kontakt</NavLink>
           </li>
           <li>
-            <NavLink  to={'/menu'} >
-              Meny
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={'/table-reservation'} >
-              Boka bord
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={'/admin'}>
-              Admin
-            </NavLink>
+            <NavLink to={'/admin'}>Admin</NavLink>
           </li>
         </ul>
       </nav>
