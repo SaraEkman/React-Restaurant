@@ -106,6 +106,7 @@ export function UpdateBookingModal(props: {
               name="numberOfGuests"
               type="number"
               defaultValue={booking.numberOfGuests}
+              min="1"
             />
           </Form.Group>
 
@@ -118,32 +119,30 @@ export function UpdateBookingModal(props: {
               defaultValue={booking?.date}
               onChange={changeDate}
             />
-            <Button
-              onClick={() => setTime("18:00")}
-              variant="outline-dark"
-              active={booking?.time === "18:00"}
-              disabled={
-                availableTables.eighteen -
-                  Math.ceil(booking.numberOfGuests / 6) <
-                0
-              }
-            >
-              18:00
-            </Button>
-            <Button
-              onClick={() => setTime("21:00")}
-              variant="outline-dark"
-              active={booking?.time === "21:00"}
-              disabled={
-                availableTables.twentyOne -
-                  Math.ceil(booking.numberOfGuests / 6) <
-                0
-              }
-            >
-              21:00
-            </Button>
           </Form.Group>
         </Form>
+        <Button
+          className="me-3"
+          onClick={() => setTime("18:00")}
+          variant="outline-dark"
+          active={booking?.time === "18:00"}
+          disabled={
+            availableTables.eighteen - Math.ceil(booking.numberOfGuests / 6) < 0
+          }
+        >
+          18:00
+        </Button>
+        <Button
+          onClick={() => setTime("21:00")}
+          variant="outline-dark"
+          active={booking?.time === "21:00"}
+          disabled={
+            availableTables.twentyOne - Math.ceil(booking.numberOfGuests / 6) <
+            0
+          }
+        >
+          21:00
+        </Button>
       </Modal.Body>
       <Modal.Footer>
         <Button

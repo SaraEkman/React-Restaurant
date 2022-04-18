@@ -3,7 +3,7 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { ICreateBooking } from "../../models/ICreateBooking";
 import { IBooking } from "../../models/IBooking";
 
-export function NewManualBokingModal(props: {
+export function NewManualBookingModal(props: {
   show: boolean;
   onHide: MouseEventHandler<HTMLButtonElement> | undefined;
   onSave(booking: ICreateBooking): void;
@@ -113,6 +113,7 @@ export function NewManualBokingModal(props: {
               name="numberOfGuests"
               type="number"
               onChange={handleChange}
+              min="1"
             />
           </Form.Group>
 
@@ -126,6 +127,7 @@ export function NewManualBokingModal(props: {
             />
           </Form.Group>
           <Button
+            className="me-3 mb-2"
             onClick={() => setTime("18:00")}
             variant="outline-dark"
             active={booking?.time === "18:00"}
@@ -137,6 +139,7 @@ export function NewManualBokingModal(props: {
             18:00
           </Button>
           <Button
+            className="mb-2"
             onClick={() => setTime("21:00")}
             variant="outline-dark"
             active={booking?.time === "21:00"}
@@ -168,10 +171,10 @@ export function NewManualBokingModal(props: {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email </Form.Label>
+            <Form.Label>E-post</Form.Label>
             <Form.Control
               type="email"
-              placeholder=" email"
+              placeholder="E-post"
               name="email"
               onChange={handleUserChange}
             />
@@ -179,13 +182,17 @@ export function NewManualBokingModal(props: {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Telefonnummer</Form.Label>
             <Form.Control
-              type="number"
+              type="text"
               placeholder="Telefonnummer"
               name="phone"
               onChange={handleUserChange}
             />
           </Form.Group>
-          <Button variant="primary" onClick={() => props.onSave(booking)}>
+          <Button
+            type="submit"
+            variant="success"
+            onClick={() => props.onSave(booking)}
+          >
             Spara Bokning
           </Button>
         </Form>

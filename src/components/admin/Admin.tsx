@@ -1,10 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Button, Container } from "react-bootstrap/";
+import { Button, Container, Table } from "react-bootstrap/";
 import { IBooking } from "../../models/IBooking";
 import { ICreateBooking } from "../../models/ICreateBooking";
 import { GetAdminService } from "../../services/GetAdminService";
-import { NewManualBokingModal } from "./NewManualBokingModal";
+import { NewManualBookingModal } from "./NewManualBookingModal";
 import { UpdateBookingModal } from "./UpdateBookingModal";
 
 export function Admin() {
@@ -47,44 +47,62 @@ export function Admin() {
     });
   }
 
-  let showBookings = bookings.map((booking, i) => {
-    return (
-      <div key={booking._id}>
-        <p>id{booking._id}</p>
-        <p>Datum: {booking.date}</p>
-        <p>Antal personer: {booking.numberOfGuests}</p>
-        <p>Tid: {booking.time}</p>
-        <p>Customer Id {booking.customerId}</p>
-        <button
-          onClick={() => {
-            deleteBooking(booking._id);
-          }}
-        >
-          Avboka
-        </button>
-        <Button variant="primary" onClick={() => setModalUpdateShow(booking)}>
-          Ändra
-        </Button>
-      </div>
-    );
-  });
-
   return (
     <Container>
-      <Button variant="primary" onClick={() => setModalNewManualShow(true)}>
-        Ny Bokning
-      </Button>
+      <div className="d-grid gap-2">
+        <Button
+          className="my-3 "
+          size="lg"
+          variant="success"
+          onClick={() => setModalNewManualShow(true)}
+        >
+          Ny Bokning
+        </Button>
+      </div>
 
-      {modalNewManualShow && (
-        <NewManualBokingModal
-          show={modalNewManualShow}
-          onHide={() => setModalNewManualShow(false)}
-          bookings={bookings}
-          onSave={createBooking}
-        />
-      )}
-      <h3>Alla Bokningar :</h3>
-      {showBookings}
+      <h3>Alla Bokningar:</h3>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Tid</th>
+            <th>Datum</th>
+            <th>Antal Personer</th>
+            <th>Customer Id</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {bookings
+            .sort((a, b) => a.date.localeCompare(b.date))
+            .map((booking: IBooking, index: number) => (
+              <tr key={booking._id}>
+                <td>{booking.time}</td>
+                <td>{booking.date}</td>
+                <td>{booking.numberOfGuests}</td>
+                <td>{booking.customerId}</td>
+                <td>
+                  <Button
+                    variant="warning"
+                    onClick={() => setModalUpdateShow(booking)}
+                  >
+                    Ändra
+                  </Button>
+                </td>
+                <td>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      deleteBooking(booking._id);
+                    }}
+                  >
+                    Avboka
+                  </Button>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </Table>
+
       {modalUpdateShow && (
         <UpdateBookingModal
           onSaveChanges={updateBooking}
@@ -92,6 +110,14 @@ export function Admin() {
           booking={modalUpdateShow}
           show={modalUpdateShow !== undefined}
           onHide={() => setModalUpdateShow(undefined)}
+        />
+      )}
+      {modalNewManualShow && (
+        <NewManualBookingModal
+          show={modalNewManualShow}
+          onHide={() => setModalNewManualShow(false)}
+          bookings={bookings}
+          onSave={createBooking}
         />
       )}
     </Container>
