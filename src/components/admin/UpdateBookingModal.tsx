@@ -73,7 +73,6 @@ export function UpdateBookingModal(props: {
     let name = e.target.name;
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    console.log("handlechange", name, value);
 
     setBooking({ ...booking, [name]: value });
   }

@@ -63,15 +63,11 @@ export function NewManualBookingModal(props: {
       });
     }
   }, [booking.date, props.bookings]);
-  useEffect(() => {
-    console.log("BOoking has changed", booking);
-  }, [booking]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     let name = e.target.name;
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    console.log("handlechange", name, value);
 
     setBooking({ ...booking, [name]: value });
   }
@@ -80,7 +76,6 @@ export function NewManualBookingModal(props: {
     let name = e.target.name;
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    console.log("handlechange", name, value);
 
     setBooking({
       ...booking,
@@ -188,11 +183,7 @@ export function NewManualBookingModal(props: {
               onChange={handleUserChange}
             />
           </Form.Group>
-          <Button
-            type="submit"
-            variant="success"
-            onClick={() => props.onSave(booking)}
-          >
+          <Button variant="success" onClick={() => props.onSave(booking)}>
             Spara Bokning
           </Button>
         </Form>
