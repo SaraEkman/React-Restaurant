@@ -10,8 +10,12 @@ export const Button = styled.button`
   font-family: 'Cinzel', serif;
   font-weight: bold;
   letter-spacing: 1px;
-
+  transition: all 0.5s;
+  
   &:hover {
     background-color: rgb(20, 83, 116);
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.5s;
   }
 `

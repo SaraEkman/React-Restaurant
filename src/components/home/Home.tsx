@@ -3,6 +3,8 @@ import { Button } from '../styled-com/Button'
 import './home.css'
 
 export function Home() {
+  // Hämtar vår  rastaurang id(kan tas bort men lämnas ifall att Sebastian vill titta på koden)
+
   // const [id,setId]=useState("")
 
   // useEffect(()=>{
@@ -20,6 +22,7 @@ export function Home() {
         style={{ backgroundImage: 'url(../images/colosseum.jpg)' }}
         className="buttonsDiv"
       >
+        {/* Knappar för att boka bord och till menyn */}
         <Link to={'/table-reservation'}>
           <Button>Boka bord</Button>
         </Link>
@@ -106,6 +109,7 @@ export function Home() {
       </div>
     </section>
   )
+  // Skapade vår restaurang för att kunna få id(kan också tas bort)
 
   // useEffect(() => {
   //    axios

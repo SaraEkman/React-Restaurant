@@ -24,15 +24,15 @@ export function Admin() {
   const [Name, setName] = useState('')
   const [PassWord, setPassWord] = useState('')
   const [Show, setShow] = useState(false)
-
+// Tar värde från  name input 
   const handleChangName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
   }
-
+// Tar värde från  password input 
   const handleChangPassWord = (e: ChangeEvent<HTMLInputElement>) => {
     setPassWord(e.target.value)
   }
-
+// Kontrollerar så att namn och lösenord stämmer
   const handleClick = () => {
     let name: string = 'grupp2'
     let passWord: string = '123'
@@ -44,6 +44,7 @@ export function Admin() {
 
   return (
     <>
+    {/* Om man inte är inloggad visas inloggnings sida */}
       {Show === false && (
         <Div className='logInDiv'>
           <label>Admins Namn</label>
