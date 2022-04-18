@@ -1,0 +1,173 @@
+/* Färgpalett 
+$white:rgb(255,255,255);
+$darkblue:rgb(0,51,78);
+$lightblue:rgb(85,136,163);
+$mediumablue:rgb(20,83,116); */
+
+/* Gäller för hela sidan */
+h2,
+h3 {
+  font-family: 'Cinzel', serif;
+}
+
+p {
+  font-family: 'PT Serif', serif;
+  font-size: large;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+input:focus {
+  outline: none;
+  border: 2px inset rgb(0, 51, 78);
+}
+
+label,
+input {
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+}
+main {
+  width: 100%;
+  min-height: 60vh;
+}
+
+/* Navigering */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+.nav .active {
+  color: rgb(20, 83, 116);
+  text-decoration: underline;
+}
+
+.nav h1 {
+  font-family: 'Babylonica', cursive;
+  font-size: 5rem;
+  margin: 0;
+  justify-content: flex-start;
+}
+
+.nav h1 span {
+  font-size: 3rem;
+}
+
+.nav ul {
+  padding: 0%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav ul li {
+  list-style: none;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  transition: all 0.5s;
+}
+
+.nav ul li:hover {
+  transition: all 0.5s;
+  transform: scale(1.07);
+}
+
+.nav ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.nav ul li a:hover {
+  color: rgb(85, 136, 163);
+  font-weight: bold;
+  
+}
+
+/* Footer  */
+footer {
+  background-color: rgb(0, 51, 78);
+  bottom: 0;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+footer ul {
+  padding-left: 0%;
+  margin: 0;
+  font-size: 1rem;
+  padding-right: 10px;
+}
+
+footer ul li {
+  margin: 0;
+  list-style: none;
+}
+
+
+footer ul li a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  padding: 3px;
+}
+
+
+/* Adress */
+.adress {
+  padding-left: 1em;
+}
+
+.adresss address {
+  font-size: 1rem;
+}
+
+.adress address a {
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.mail {
+  border: 1px solid rgb(255, 255, 255);
+  padding: 0.5em;
+  margin: 2em 0;
+}
+
+/* Endast för skärm över 600px breda */
+@media only screen and (min-width: 600px) {
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+  }
+
+  .nav h1 span {
+    font-size: 5rem;
+  }
+
+  .nav ul {
+    gap: 25px;
+  }
+
+  main {
+    width: 100%;
+    min-height: 71vh;
+  }
+
+  footer {
+    justify-content: space-evenly;
+  }
+
+  footer a:hover {
+    background-color: rgb(20, 83, 116);
+    border-radius: 10px;
+  }
+}

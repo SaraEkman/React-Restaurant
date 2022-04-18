@@ -1,13 +1,35 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState,ChangeEvent } from "react";
 import { Button, Container, Table } from "react-bootstrap/";
 import { IBooking } from "../../models/IBooking";
 import { ICreateBooking } from "../../models/ICreateBooking";
 import { GetAdminService } from "../../services/GetAdminService";
 import { NewManualBookingModal } from "./NewManualBookingModal";
 import { UpdateBookingModal } from "./UpdateBookingModal";
+import { Button as StyledButton } from '../styled-com/Button'
+import { Div } from '../styled-com/Div'
+import "./admin.css"
 
 export function Admin() {
+  const [Name, setName] = useState('')
+  const [PassWord, setPassWord] = useState('')
+  const [Show, setShow] = useState(false)
+// Tar värde från  name input 
+  const handleChangName = (e: ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value)
+  }
+// Tar värde från  password input 
+  const handleChangPassWord = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassWord(e.target.value)
+  }
+// Kontrollerar så att namn och lösenord stämmer
+  const handleClick = () => {
+    let name: string = 'grupp2'
+    let passWord: string = '123'
+
+    if (name === Name && passWord === PassWord) {
+      setShow(true)
+    }
+  }
   const [bookings, setBookings] = useState<IBooking[]>([]);
   const [modalUpdateShow, setModalUpdateShow] = useState<IBooking>();
   const [modalNewManualShow, setModalNewManualShow] = useState<boolean>(false);
@@ -48,7 +70,19 @@ export function Admin() {
   }
 
   return (
-    <Container>
+    <>
+       {/* Om man inte är inloggad visas inloggnings sida */}
+       {Show === false && (
+        <Div className='logInDiv'>
+          <label>Admins Namn</label>
+          <input type="text" value={Name} onChange={handleChangName} />
+          <label>Lösenord</label>
+          <input type="password" value={PassWord} onChange={handleChangPassWord} />
+          <StyledButton onClick={handleClick} className="loginBtn">Logga in</StyledButton>
+        </Div>
+      )}
+      {Show &&
+      <Container>
       <div className="d-grid gap-2">
         <Button
           className="my-3 "
@@ -120,6 +154,9 @@ export function Admin() {
           onSave={createBooking}
         />
       )}
+    
     </Container>
+}
+    </>
   );
 }

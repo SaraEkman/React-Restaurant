@@ -1,0 +1,96 @@
+.buttonsDiv {
+  width: auto;
+  height: 500px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pastaContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.employeesContent {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.pastaContent div,
+.employeesContent div {
+  padding-left: 10px;
+}
+
+.family {
+  display: flex;
+  flex-direction: row;
+}
+
+.family div {
+  padding-left: 10px;
+}
+
+.friends {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.friends div {
+  padding-left: 10px;
+}
+
+/* Endast för skärm över 600px breda */
+@media only screen and (min-width: 600px) {
+  .buttonsDiv {
+    height: 1000px;
+  }
+  .pastaContent {
+    flex-direction: row;
+  }
+
+  .employeesContent {
+    flex-direction: row;
+  }
+
+  .aboutContent {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .friends {
+    flex-direction: row;
+  }
+
+  .mainSection img {
+    width: 50%;
+    height: auto;
+  }
+
+  .mainSection h2 {
+    color: rgb(0, 51, 78);
+    text-align: center;
+  }
+
+  .mainSection p {
+    text-align: center;
+  }
+
+  .pastaContent div,
+  .employeesContent div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .family div,
+  .friends div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}

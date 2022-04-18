@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 import { ICreateReserve } from '../../models/interfaces/ICreateReserve'
 import { User } from '../../models/interfaces/User'
 import { GetDataServices } from '../../services/GetDataServices'
-import { TableReservation } from '../table-reservation/TableReservation'
-import {  ThanksForReservation } from '../thanksCom/ThanksForReservation'
+import { Button } from '../styled-com/Button'
+import "./userForm.css"
 
 export interface IGetTimeProps {
   date: string
   time: string
   people: number
+  numOfTables: number
 }
 
 export function UserForm(props: IGetTimeProps) {
@@ -20,8 +21,6 @@ export function UserForm(props: IGetTimeProps) {
     phone: '',
   })
 
-  const [ShowBtn, setShowBtn] = useState(false)
-
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     let name = e.target.name
 
@@ -29,6 +28,7 @@ export function UserForm(props: IGetTimeProps) {
   }
 
   const handleClick = () => {
+    // Postar info till apiet
     let num = props.people
     let CreateReserve: ICreateReserve = {
       restaurantId: '624c2f5347678330c7a5c58e',
@@ -37,56 +37,51 @@ export function UserForm(props: IGetTimeProps) {
       numberOfGuests: num,
       customer: newCustomer,
     }
-
-    let postData = new GetDataServices()
-    postData.createBooking(CreateReserve)
-
-    //  return <ThanksForReservation name={newCustomer.name} date={props.date} time={props.time} />
-
-    // setShowBtn(true)
+    let saveInfo:any = []
+    for (let i = 1; i <= props.numOfTables; i++){
+      let postData = new GetDataServices()
+      postData.createBooking(CreateReserve)
+      saveInfo = [newCustomer.name, props.time, props.date]
+      console.log(props.numOfTables);
+    }
+    localStorage.setItem('ReservationInfo', JSON.stringify(saveInfo))
   }
 
   return (
-    <>
-      <form>
-        <label>Förnamn</label>
-        <input
+    <div>
+      <form className='userFormDiv'>
+        <label>Förnamn: <input
           type="text"
           name="name"
           value={newCustomer.name}
           onChange={handleChange}
-        />
-        <label>Efternamn</label>
-        <input
+        /></label>
+        <label>Efternamn: <input
           type="text"
           name="lastname"
           value={newCustomer.lastname}
           onChange={handleChange}
-        />
-        <label>Mobil</label>
-        <input
+        /></label>
+        <label>Mobil: <input
           type="text"
           name="phone"
           value={newCustomer.phone}
           onChange={handleChange}
-        />
-        <label>Email</label>
-        <input
+        /></label>
+        <label>Email: <input
           type="email"
           name="email"
           value={newCustomer.email}
           onChange={handleChange}
-        />
+        /></label>
       </form>
-      {/* {ShowBtn ? (
-       <ThanksForReservation/>
-      ) : ( */}
-
-      <Link to="/thanksForReservation">
-        <button type="button" onClick={handleClick}>
+      <div className='userFormBtn'>
+         <Link to="/thanksForReservation" >
+        <Button  type="button" onClick={handleClick}>
           Spara Bokning
-        </button>
+        </Button>
       </Link>
-    </>
+     </div>
+    </div>
   )
 }

@@ -1,6 +1,5 @@
 import { ICreateReserve } from './../models/interfaces/ICreateReserve'
 import { IReservation } from './../models/interfaces/IReservation'
-// import { IGetId } from '../models/interfaces/IGetId'
 import axios from 'axios'
 import { IGetId } from '../models/interfaces/IGetId'
 export class GetDataServices {

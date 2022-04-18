@@ -1,0 +1,15 @@
+.bookingDiv label {
+  margin-bottom: 12px;
+}
+
+.btnDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+/* För skärm över 600px */
+@media only screen and (min-width: 600px) {
+  .bookingDiv label {
+      margin-top: 15px;
+  }
+}

@@ -1,15 +1,21 @@
-export interface IThanks {
-    name: string
-    date: string
-    time: string
-}
+// export interface IThanks {
+//     name: string
+//     date: string
+//     time: string
+// }
+import { Div } from '../styled-com/Div'
+import './thanks.css'
 
-export const ThanksForReservation = (props: IThanks) => {
+export const ThanksForReservation = () => {
+  let data = JSON.parse(localStorage.getItem('ReservationInfo') || '[]')
+
   return (
-    <div>
-      {/* //         Tack  för din bestälning {props.name},
-//         Ditt bord är reserverad för klockan {props.time} den {props.date}
-//         Välkommen åter */}
-    </div>
+    <Div className="thanksDiv">
+      <p>
+        Tack för din beställning <b>{data[0]}</b>!<br></br> Ditt bord är reserverad för
+        <b> klockan {data[1]} den {data[2]}</b>
+        <br></br> Välkommen åter.
+      </p>
+    </Div>
   )
 }
