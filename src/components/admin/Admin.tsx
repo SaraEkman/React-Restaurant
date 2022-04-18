@@ -102,7 +102,7 @@ export function Admin() {
           </div>
 
           <h3>Alla Bokningar:</h3>
-          <Table striped bordered hover>
+          <Table responsive striped bordered hover>
             <thead>
               <tr>
                 <th>Tid</th>
