@@ -33,7 +33,7 @@ export function NewManualBookingModal(props: {
       });
       const available1800Slots = filteredBookings.reduce(
         (numberOfFreeTables, oneOfExsistingBookings) => {
-          if (oneOfExsistingBookings.date === "18:00") {
+          if (oneOfExsistingBookings.time === "18:00") {
             const numberOfTablesBooked = Math.ceil(
               oneOfExsistingBookings.numberOfGuests / 6
             );
@@ -46,7 +46,7 @@ export function NewManualBookingModal(props: {
       );
       const available2100Slots = filteredBookings.reduce(
         (numberOfFreeTables, oneOfExsistingBookings) => {
-          if (oneOfExsistingBookings.date === "21:00") {
+          if (oneOfExsistingBookings.time === "21:00") {
             const numberOfTablesBooked = Math.ceil(
               oneOfExsistingBookings.numberOfGuests / 6
             );

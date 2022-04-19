@@ -31,7 +31,7 @@ export function UpdateBookingModal(props: {
       // Reduce går igenom varenda bokning i filterdbokings kolla på
       const available1800Slots = filteredBookings.reduce(
         (numberOfFreeTables, oneOfExsistingBookings) => {
-          if (oneOfExsistingBookings.date === "18:00") {
+          if (oneOfExsistingBookings.time === "18:00") {
             const numberOfTablesBooked = Math.ceil(
               oneOfExsistingBookings.numberOfGuests / 6
             );
@@ -45,7 +45,7 @@ export function UpdateBookingModal(props: {
 
       const available2100Slots = filteredBookings.reduce(
         (previousValue, currentValue) => {
-          if (currentValue.date === "21:00") {
+          if (currentValue.time === "21:00") {
             const numberOfTablesBooked = Math.ceil(
               currentValue.numberOfGuests / 6
             );
