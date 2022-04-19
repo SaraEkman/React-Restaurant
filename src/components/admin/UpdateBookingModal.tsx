@@ -84,7 +84,13 @@ export function UpdateBookingModal(props: {
   function setTime(time: string) {
     setBooking({ ...booking, time });
   }
+  function handleNumberOfGuestsChange(e: ChangeEvent<HTMLInputElement>) {
+    let name = e.target.name;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
 
+    setBooking({ ...booking, [name]: value, time: "" });
+  }
   const handleSubmit = (event: any) => {
     setTimeError(false);
     const form = event?.currentTarget;
@@ -118,7 +124,7 @@ export function UpdateBookingModal(props: {
             <Form.Label>Antal personer</Form.Label>
             <Form.Control
               required
-              onChange={handleChange}
+              onChange={handleNumberOfGuestsChange}
               name="numberOfGuests"
               type="number"
               defaultValue={booking.numberOfGuests}
@@ -143,37 +149,49 @@ export function UpdateBookingModal(props: {
               Välj ett datum
             </Form.Control.Feedback>
           </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Button
+              className="me-3"
+              onClick={() => setTime("18:00")}
+              variant="outline-dark"
+              active={booking?.time === "18:00"}
+              disabled={
+                availableTables.eighteen -
+                  Math.ceil(booking.numberOfGuests / 6) <
+                0
+              }
+            >
+              18:00
+            </Button>
+            <Button
+              onClick={() => setTime("21:00")}
+              variant="outline-dark"
+              active={booking?.time === "21:00"}
+              disabled={
+                availableTables.twentyOne -
+                  Math.ceil(booking.numberOfGuests / 6) <
+                0
+              }
+            >
+              21:00
+            </Button>
+            {timeError && (
+              <div className="invalid-feedback" style={{ display: "block" }}>
+                Välj tid
+              </div>
+            )}
+          </Form.Group>
+          <Form.Group>
+            <Button variant="success" type="submit">
+              Spara
+            </Button>
+          </Form.Group>
         </Form>
-        <Button
-          className="me-3"
-          onClick={() => setTime("18:00")}
-          variant="outline-dark"
-          active={booking?.time === "18:00"}
-          disabled={
-            availableTables.eighteen - Math.ceil(booking.numberOfGuests / 6) < 0
-          }
-        >
-          18:00
-        </Button>
-        <Button
-          onClick={() => setTime("21:00")}
-          variant="outline-dark"
-          active={booking?.time === "21:00"}
-          disabled={
-            availableTables.twentyOne - Math.ceil(booking.numberOfGuests / 6) <
-            0
-          }
-        >
-          21:00
-        </Button>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" type="submit">
-          Spara
-        </Button>
         <Button onClick={props.onHide}>Stäng</Button>
       </Modal.Footer>
     </Modal>
   );
 }
-//onClick={() => {props.onSaveChanges(booking);}}
