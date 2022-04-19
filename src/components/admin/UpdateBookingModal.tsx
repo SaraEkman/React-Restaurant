@@ -17,10 +17,10 @@ export function UpdateBookingModal(props: {
     twentyOne: number;
   }>({ eighteen: 0, twentyOne: 0 });
   const [validated, setValidated] = useState(false);
+  const [timeError, setTimeError] = useState(false);
 
   // Räkna ut antal bord som är lediga,
   // vi börjar beräkningen när modalen laddas för första gängen och när datumet ändras.
-  //
   useEffect(() => {
     // Finns datum och bokningar
     if (booking.date && props.bookings) {
@@ -86,10 +86,16 @@ export function UpdateBookingModal(props: {
   }
 
   const handleSubmit = (event: any) => {
+    setTimeError(false);
     const form = event?.currentTarget;
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || booking.time === "") {
       event.preventDefault();
       event.stopPropagation();
+    } else {
+      props.onSaveChanges(booking);
+    }
+    if (booking.time === "") {
+      setTimeError(true);
     }
     setValidated(true);
   };
@@ -163,9 +169,9 @@ export function UpdateBookingModal(props: {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" type="submit">
-          Submit
+          Spara
         </Button>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={props.onHide}>Stäng</Button>
       </Modal.Footer>
     </Modal>
   );

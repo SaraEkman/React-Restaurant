@@ -28,11 +28,17 @@ export function NewManualBookingModal(props: {
   const [validated, setValidated] = useState(false);
   const [timeError, setTimeError] = useState(false);
 
+  // Räkna ut antal bord som är lediga,
+  // vi börjar beräkningen när modalen laddas för första gängen och när datumet ändras.
   useEffect(() => {
+    // Finns datum och bokningar
     if (booking.date && props.bookings) {
+      // Filtrera bort bokningar som inte är samma dag.
       const filteredBookings = props.bookings.filter((b) => {
         return b.date === booking.date;
       });
+      // Beräkna antal bord som är lediga det datumet
+      // Reduce går igenom varenda bokning i filterdbokings kolla på
       const available1800Slots = filteredBookings.reduce(
         (numberOfFreeTables, oneOfExsistingBookings) => {
           if (oneOfExsistingBookings.time === "18:00") {
@@ -246,7 +252,7 @@ export function NewManualBookingModal(props: {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={props.onHide}>Stäng</Button>
       </Modal.Footer>
     </Modal>
   );

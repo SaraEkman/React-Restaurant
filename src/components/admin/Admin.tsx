@@ -12,7 +12,7 @@ import "./admin.css";
 export function Admin() {
   const [Name, setName] = useState("");
   const [PassWord, setPassWord] = useState("");
-  const [Show, setShow] = useState(true);
+  const [Show, setShow] = useState(false);
   const [isFetchingBookings, setIsFetchingBookings] = useState(true);
   // Tar värde från  name input
   const handleChangName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +29,7 @@ export function Admin() {
 
     if (name === Name && passWord === PassWord) {
       setShow(true);
+      getBookings();
     }
   };
   const [bookings, setBookings] = useState<IBooking[]>([]);
@@ -38,7 +39,7 @@ export function Admin() {
   const service = new GetAdminService();
 
   useEffect(() => {
-    getBookings();
+    //getBookings();
   }, []);
 
   function deleteBooking(id: string) {
@@ -131,7 +132,7 @@ export function Admin() {
                 <th>Tid</th>
                 <th>Datum</th>
                 <th>Antal Personer</th>
-                <th>Customer</th>
+                <th>Kunder</th>
               </tr>
             </thead>
 
