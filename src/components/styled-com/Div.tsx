@@ -11,11 +11,9 @@ export const Div = styled.div`
   margin: auto;
   padding: 8px;
   margin-top: 10px;
-  transform: translateY(30%);
 
   @media only screen and (min-width: 600px) {
     width: 60%;
     min-height: 500px;
-    transform: translateY(15%);
   }
 `

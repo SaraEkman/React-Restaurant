@@ -10,7 +10,6 @@ export interface IGetTimeProps {
   date: string
   time: string
   people: number
-  numOfTables: number
 }
 
 export function UserForm(props: IGetTimeProps) {
@@ -37,13 +36,12 @@ export function UserForm(props: IGetTimeProps) {
       numberOfGuests: num,
       customer: newCustomer,
     }
-    let saveInfo:any = []
-    for (let i = 1; i <= props.numOfTables; i++){
+    let saveInfo: any = []
+    
       let postData = new GetDataServices()
       postData.createBooking(CreateReserve)
       saveInfo = [newCustomer.name, props.time, props.date]
-      console.log(props.numOfTables);
-    }
+    
     localStorage.setItem('ReservationInfo', JSON.stringify(saveInfo))
   }
 

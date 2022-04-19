@@ -47,34 +47,41 @@ export function TableReservation() {
         sameDate.push(boking)
       }
     })
-
+    // Antal bord besökaren önskar boka
     const numOfTables = Math.ceil(+InputNumValue / 6)
     setNumOfTables(numOfTables)
 
-    let list18: IReservation[] = []
-    let list21: IReservation[] = []
+    // Antal bord som finns bokade för kl18 eller 21 i APIet
+    let numOfTables18:number[]=[]
+    let numOfTables21:number[]=[]
 
     sameDate.map((boking) => {
       if (boking.time === '18:00') {
-        list18.push(boking)
+        numOfTables18.push(Math.ceil(boking.numberOfGuests / 6))
       } else if (boking.time === '21:00') {
-        list21.push(boking)
+        numOfTables21.push(Math.ceil(boking.numberOfGuests/6))
       }
     })
-
-    if (list18.length > 15 - numOfTables) {
-      console.log(list18.length)
+    let sum18 = 0
+    let sum21 = 0
+    numOfTables18.forEach((table) => {
+      sum18 = sum18 + table 
+    })
+    numOfTables21.forEach((table) => {
+      sum21 = sum21 + table 
+    })
+   
+    if (numOfTables +sum18 > 15) {
       setShowBtn18(false)
       setShowError18(true)
     }
-    if (list21.length > 15 - numOfTables) {
-      console.log(list21.length)
+    if (numOfTables + sum21>15) {
       setShowBtn21(false)
       setShowError21(true)
     }
     if (
-      list18.length > 15 - numOfTables &&
-      list21.length > 15 - numOfTables
+      numOfTables +sum18 > 15 &&
+      numOfTables +sum21 > 15
     ) {
       setShowError(true)
       setShowError18(false)
@@ -122,7 +129,7 @@ export function TableReservation() {
             <Button onClick={goToUserForm}>18:00</Button>
           </div>
         ) : ShowError18 === true ? (
-          <div>Tiden klockan 18 är upptagen</div>
+          <div className='errorMessage'>Tiden klockan 18 är upptagen!</div>
         ) : (
           <div></div>
         )}
@@ -131,14 +138,14 @@ export function TableReservation() {
             <Button onClick={goToUserForm}>21:00</Button>
           </div>
         ) : ShowError21 === true ? (
-          <div>Tiden klockan 21 är upptagen</div>
+          <div className='errorMessage'>Tiden klockan 21 är upptagen!</div>
         ) : (
           <div></div>
         )}
       </div>
 
       {ShowError ? (
-        <div>Tyvärr det finns ingen ledig tid för valda datumet 😰</div>
+        <div className='errorMessage'>Tyvärr det finns ingen ledig tid för valda datumet 😰</div>
       ) : (
         <div></div>
       )}
@@ -148,7 +155,6 @@ export function TableReservation() {
           time={Time}
           date={InputDateValue}
           people={+InputNumValue}
-          numOfTables={NumOfTables}
         ></UserForm>
       ) : (
         <div></div>

@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const Button = styled.button`
   background-color: rgb(0, 51, 78);
-  height: 4em;
-  width: 10em;
+  height: 3.5em;
+  width: 8em;
   color: rgb(255, 255, 255);
   border-radius: 10px;
   text-transform: uppercase;
