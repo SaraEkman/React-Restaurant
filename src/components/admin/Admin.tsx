@@ -30,7 +30,6 @@ export function Admin() {
 
     if (name === Name && passWord === PassWord) {
       setShow(true);
-      getBookings();
     }
   };
   const [bookings, setBookings] = useState<IBooking[]>([]);
@@ -39,14 +38,24 @@ export function Admin() {
 
   const service = new GetAdminService();
 
+  // Hämtar bokningar när vi loggat in eller redan är inloggad
   useEffect(() => {
-    //getBookings();
-  }, []);
+    if (Show) {
+      getBookings();
+    }
+    //VSC hjälpte till med varningen.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [Show]);
 
   function deleteBooking(id: string) {
     service.deleteBooking(id).then(() => {
+      //Filtrerar bort den borttagna bokningen.
       const filteredBookings = bookings.filter((booking) => {
-        return id !== booking._id;
+        if (id === booking._id) {
+          return false;
+        } else {
+          return true;
+        }
       });
       setBookings(filteredBookings);
     });
@@ -57,9 +66,11 @@ export function Admin() {
       getBookings();
     });
   }
+
   function updateBooking(updatedBooking: IBooking) {
     setModalUpdateShow(undefined);
     service.changeBooking(updatedBooking).then(() => {
+      // Byter ut den gamla bokningen med samma id, med den nya uppdaterade bokningen.
       const changedBookings = bookings.map((booking) => {
         if (booking._id === updatedBooking._id) return updatedBooking;
         return booking;
@@ -73,6 +84,8 @@ export function Admin() {
       const customerIds = bookings.map((booking) => booking.customerId);
       service.getCustomers(customerIds).then((customerData) => {
         if (customerData.length > 0) {
+          // Om vi har fått en array av customers. Gå igenom bokningarna och hitta arrayindex i customers array.
+          // Lägg då till den till bokningen.
           const updatedBookings = bookings.map((b) => {
             let index = customerData.findIndex((a) => a._id === b.customerId);
             if (index > -1) {

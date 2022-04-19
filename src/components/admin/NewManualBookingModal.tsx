@@ -39,7 +39,7 @@ export function NewManualBookingModal(props: {
         return b.date === booking.date;
       });
       // Beräkna antal bord som är lediga det datumet
-      // Reduce går igenom varenda bokning i filterdbokings kolla på
+      // Reduce går igenom varenda bokning i filterdbookings och retunerar antal lediga bord.
       const available1800Slots = filteredBookings.reduce(
         (numberOfFreeTables, oneOfExsistingBookings) => {
           if (oneOfExsistingBookings.time === "18:00") {
@@ -73,6 +73,7 @@ export function NewManualBookingModal(props: {
     }
   }, [booking.date, props.bookings]);
 
+  // När vi ändrar antal gäster sätter vi tiden till 0 igen.
   function handleNumberOfGuestsChange(e: ChangeEvent<HTMLInputElement>) {
     let name = e.target.name;
     const value =
@@ -96,10 +97,11 @@ export function NewManualBookingModal(props: {
   }
 
   function setTime(time: string) {
-    console.log("setTime", time);
-    setBooking({ ...booking, time: time });
+    setBooking({ ...booking, time });
   }
 
+  // Hanterar valideringen, om allt inte är ifyllt visas felmeddelanden upp.
+  // Om allt fyllts i sparas bokningen.
   const handleSubmit = (event: any) => {
     setTimeError(false);
     const form = event?.currentTarget;

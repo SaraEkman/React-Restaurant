@@ -4,6 +4,11 @@ import { Col, Row, Container, Image } from "react-bootstrap";
 import menuJson from "../../data/menu.json";
 import { IDish, IMenu } from "../../models/interfaces/IMenu";
 
+/**
+ * Hämtar en Json fil som innehåller menyn. Visar upp den på sidan med hjälp av map.
+ *
+ */
+
 export function Menu() {
   const [menu] = useState<IMenu[]>(menuJson);
 

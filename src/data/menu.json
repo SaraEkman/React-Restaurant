@@ -76,17 +76,17 @@
         "imagePath": "./images/cake.jpg",
         "dishes": [
             {
-                "name": "TIRAMISU",
+                "name": "Tiramisu",
                 "description": "Klassisk Tiramisu med smak av kaffe, amarettolikör och kakao.",
                 "sek": 125
             },
             {
-                "name": " GRANDE GELATO",
+                "name": " Grande gelato",
                 "description": "Fettsnål och smakrik italiensk glass.",
                 "sek": 125
             },
             {
-                "name": "KARAMELOCO",
+                "name": "Karameloco",
                 "description": "Vegansk chokladkaka toppas med vegansk vaniljglass, kanderade hasselnötter och karamelsås.",
                 "sek": 125
             }

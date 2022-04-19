@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { MouseEventHandler } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { IBooking } from "../../models/interfaces/IBooking";
@@ -29,7 +29,7 @@ export function UpdateBookingModal(props: {
         return b.date === booking.date && b._id !== props.booking._id;
       });
       // Beräkna antal bord som är lediga det datumet
-      // Reduce går igenom varenda bokning i filterdbokings kolla på
+      // Reduce går igenom varenda bokning i filterdbookings och retunerar antal lediga bord.
       const available1800Slots = filteredBookings.reduce(
         (numberOfFreeTables, oneOfExsistingBookings) => {
           if (oneOfExsistingBookings.time === "18:00") {
@@ -64,19 +64,17 @@ export function UpdateBookingModal(props: {
     }
   }, [booking.date, props.booking._id, props.bookings]);
 
-  useEffect(() => {
-    if (props.booking) {
-      setBooking(props.booking);
-    }
-  }, [props.booking]);
-
+  // När vi ändrar datumet vill vi sätta tiden till 0.
   function changeDate(e: ChangeEvent<HTMLInputElement>) {
     setBooking({ ...booking, time: "", date: e.target.value });
   }
 
+  // Sätter tiden till det man valt
   function setTime(time: string) {
     setBooking({ ...booking, time });
   }
+
+  // När vi ändrar antal gäster sätter vi tiden till 0 igen.
   function handleNumberOfGuestsChange(e: ChangeEvent<HTMLInputElement>) {
     let name = e.target.name;
     const value =
@@ -84,6 +82,9 @@ export function UpdateBookingModal(props: {
 
     setBooking({ ...booking, [name]: value, time: "" });
   }
+
+  // Hanterar valideringen, om allt inte är ifyllt visas felmeddelanden upp.
+  // Om allt fyllts i sparas bokningen.
   const handleSubmit = (event: any) => {
     setTimeError(false);
     const form = event?.currentTarget;
