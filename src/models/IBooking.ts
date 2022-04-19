@@ -5,4 +5,10 @@ export interface IBooking {
   time: string;
   numberOfGuests: number;
   customerId: string;
+  customer: {
+    name: string;
+    lastname: string;
+    email: string;
+    phone: string;
+  };
 }

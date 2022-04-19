@@ -1,5 +1,5 @@
 import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { ICreateBooking } from "../../models/ICreateBooking";
 import { IBooking } from "../../models/IBooking";
 
@@ -25,6 +25,8 @@ export function NewManualBookingModal(props: {
     eighteen: number;
     twentyOne: number;
   }>({ eighteen: 0, twentyOne: 0 });
+  const [validated, setValidated] = useState(false);
+  const [timeError, setTimeError] = useState(false);
 
   useEffect(() => {
     if (booking.date && props.bookings) {
@@ -72,6 +74,14 @@ export function NewManualBookingModal(props: {
     setBooking({ ...booking, [name]: value });
   }
 
+  function handleNumberOfGuestsChange(e: ChangeEvent<HTMLInputElement>) {
+    let name = e.target.name;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
+    setBooking({ ...booking, [name]: value, time: "" });
+  }
+
   function handleUserChange(e: ChangeEvent<HTMLInputElement>) {
     let name = e.target.name;
     const value =
@@ -87,8 +97,24 @@ export function NewManualBookingModal(props: {
   }
 
   function setTime(time: string) {
-    setBooking({ ...booking, time });
+    console.log("setTime", time);
+    setBooking({ ...booking, time: time });
   }
+
+  const handleSubmit = (event: any) => {
+    setTimeError(false);
+    const form = event?.currentTarget;
+    if (form.checkValidity() === false || booking.time === "") {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      props.onSave(booking);
+    }
+    if (booking.time === "") {
+      setTimeError(true);
+    }
+    setValidated(true);
+  };
 
   return (
     <Modal
@@ -101,89 +127,120 @@ export function NewManualBookingModal(props: {
         <Modal.Title id="contained-modal-title-vcenter">Ny Bokning</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="validationCustom01">
             <Form.Label>Antal personer</Form.Label>
             <Form.Control
+              required
               name="numberOfGuests"
               type="number"
-              onChange={handleChange}
+              onChange={handleNumberOfGuestsChange}
               min="1"
             />
+            <Form.Control.Feedback type="invalid">
+              Välj antal personer
+            </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-3" controlId="validationCustom02">
             <Form.Label>Datum</Form.Label>
             <Form.Control
+              required
               type="date"
               name="date"
               min={new Date().toISOString().split("T")[0]}
               onChange={changeDate}
             />
+            <Form.Control.Feedback type="invalid">
+              Välj ett datum
+            </Form.Control.Feedback>
           </Form.Group>
-          <Button
-            className="me-3 mb-2"
-            onClick={() => setTime("18:00")}
-            variant="outline-dark"
-            active={booking?.time === "18:00"}
-            disabled={
-              availableTables.eighteen - Math.ceil(booking.numberOfGuests / 6) <
-              0
-            }
-          >
-            18:00
-          </Button>
-          <Button
-            className="mb-2"
-            onClick={() => setTime("21:00")}
-            variant="outline-dark"
-            active={booking?.time === "21:00"}
-            disabled={
-              availableTables.twentyOne -
-                Math.ceil(booking.numberOfGuests / 6) <
-              0
-            }
-          >
-            21:00
-          </Button>
+          <Form.Group className="mb-3">
+            <Button
+              className="me-3 mb-2"
+              onClick={() => setTime("18:00")}
+              variant="outline-dark"
+              active={booking?.time === "18:00"}
+              disabled={
+                availableTables.eighteen -
+                  Math.ceil(booking.numberOfGuests / 6) <
+                0
+              }
+            >
+              18:00
+            </Button>
+            <Button
+              className="mb-2"
+              onClick={() => setTime("21:00")}
+              variant="outline-dark"
+              active={booking?.time === "21:00"}
+              disabled={
+                availableTables.twentyOne -
+                  Math.ceil(booking.numberOfGuests / 6) <
+                0
+              }
+            >
+              21:00
+            </Button>
+            {timeError && (
+              <div className="invalid-feedback" style={{ display: "block" }}>
+                Välj tid
+              </div>
+            )}
+          </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="validationCustom03">
             <Form.Label>Förnamn</Form.Label>
             <Form.Control
+              required
               type="text"
               placeholder="Förnamn"
               name="name"
               onChange={handleUserChange}
             />
+            <Form.Control.Feedback type="invalid">
+              Ange ett Förnamn
+            </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="validationCustom04">
             <Form.Label>Efternamn</Form.Label>
             <Form.Control
-              type="text"
+              required
               placeholder="Efternamn"
               name="lastname"
               onChange={handleUserChange}
             />
+            <Form.Control.Feedback type="invalid">
+              Ange ett Efternamn
+            </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="validationCustom05">
             <Form.Label>E-post</Form.Label>
             <Form.Control
+              required
               type="email"
               placeholder="E-post"
               name="email"
               onChange={handleUserChange}
             />
+            <Form.Control.Feedback type="invalid">
+              Ange E-post
+            </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="validationCustom06">
             <Form.Label>Telefonnummer</Form.Label>
             <Form.Control
+              required
               type="text"
               placeholder="Telefonnummer"
               name="phone"
               onChange={handleUserChange}
             />
+            <Form.Control.Feedback type="invalid">
+              Ange ett telefonummmer
+            </Form.Control.Feedback>
           </Form.Group>
-          <Button variant="success" onClick={() => props.onSave(booking)}>
+          <Button variant="success" type="submit">
             Spara Bokning
           </Button>
         </Form>
@@ -194,3 +251,4 @@ export function NewManualBookingModal(props: {
     </Modal>
   );
 }
+//onClick={() => props.onSave(booking)}

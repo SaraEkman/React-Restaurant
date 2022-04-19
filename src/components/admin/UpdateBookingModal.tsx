@@ -16,6 +16,7 @@ export function UpdateBookingModal(props: {
     eighteen: number;
     twentyOne: number;
   }>({ eighteen: 0, twentyOne: 0 });
+  const [validated, setValidated] = useState(false);
 
   // Räkna ut antal bord som är lediga,
   // vi börjar beräkningen när modalen laddas för första gängen och när datumet ändras.
@@ -84,6 +85,15 @@ export function UpdateBookingModal(props: {
     setBooking({ ...booking, time });
   }
 
+  const handleSubmit = (event: any) => {
+    const form = event?.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    setValidated(true);
+  };
+
   return (
     <Modal
       show={props.show}
@@ -93,31 +103,39 @@ export function UpdateBookingModal(props: {
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          Bokning {booking?._id}
+          Bokning {booking.customer.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="validationCustom01">
             <Form.Label>Antal personer</Form.Label>
             <Form.Control
+              required
               onChange={handleChange}
               name="numberOfGuests"
               type="number"
               defaultValue={booking.numberOfGuests}
               min="1"
             />
+            <Form.Control.Feedback type="invalid">
+              Välj antal personer
+            </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-3" controlId="validationCustom02">
             <Form.Label>Datum</Form.Label>
             <Form.Control
+              required
               type="date"
               name="date"
               min={new Date().toISOString().split("T")[0]}
               defaultValue={booking?.date}
               onChange={changeDate}
             />
+            <Form.Control.Feedback type="invalid">
+              Välj ett datum
+            </Form.Control.Feedback>
           </Form.Group>
         </Form>
         <Button
@@ -144,13 +162,7 @@ export function UpdateBookingModal(props: {
         </Button>
       </Modal.Body>
       <Modal.Footer>
-        <Button
-          variant="primary"
-          type="submit"
-          onClick={() => {
-            props.onSaveChanges(booking);
-          }}
-        >
+        <Button variant="primary" type="submit">
           Submit
         </Button>
         <Button onClick={props.onHide}>Close</Button>
@@ -158,3 +170,4 @@ export function UpdateBookingModal(props: {
     </Modal>
   );
 }
+//onClick={() => {props.onSaveChanges(booking);}}

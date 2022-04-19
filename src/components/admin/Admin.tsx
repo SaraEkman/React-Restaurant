@@ -1,5 +1,5 @@
 import { useEffect, useState, ChangeEvent } from "react";
-import { Button, Container, Table } from "react-bootstrap/";
+import { Button, Container, Table, Spinner } from "react-bootstrap/";
 import { IBooking } from "../../models/IBooking";
 import { ICreateBooking } from "../../models/ICreateBooking";
 import { GetAdminService } from "../../services/GetAdminService";
@@ -12,7 +12,8 @@ import "./admin.css";
 export function Admin() {
   const [Name, setName] = useState("");
   const [PassWord, setPassWord] = useState("");
-  const [Show, setShow] = useState(false);
+  const [Show, setShow] = useState(true);
+  const [isFetchingBookings, setIsFetchingBookings] = useState(true);
   // Tar värde från  name input
   const handleChangName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -37,10 +38,7 @@ export function Admin() {
   const service = new GetAdminService();
 
   useEffect(() => {
-    service
-      .getBookings("624c2f5347678330c7a5c58e")
-      .then((bookings) => setBookings(bookings));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getBookings();
   }, []);
 
   function deleteBooking(id: string) {
@@ -54,9 +52,7 @@ export function Admin() {
   function createBooking(booking: ICreateBooking) {
     setModalNewManualShow(false);
     service.createBooking(booking).then((data: IBooking) => {
-      service
-        .getBookings("624c2f5347678330c7a5c58e")
-        .then((bookings) => setBookings(bookings));
+      getBookings();
     });
   }
   function updateBooking(updatedBooking: IBooking) {
@@ -69,7 +65,34 @@ export function Admin() {
       setBookings(changedBookings);
     });
   }
-
+  function getBookings() {
+    setIsFetchingBookings(true);
+    service.getBookings("624c2f5347678330c7a5c58e").then((bookings) => {
+      const customerIds = bookings.map((booking) => booking.customerId);
+      service.getCustomers(customerIds).then((customerData) => {
+        if (customerData.length > 0) {
+          const updatedBookings = bookings.map((b) => {
+            let index = customerData.findIndex((a) => a._id === b.customerId);
+            if (index > -1) {
+              return {
+                ...b,
+                customer: {
+                  name: customerData[index].name,
+                  lastname: customerData[index].lastname,
+                  email: customerData[index].email,
+                  phone: customerData[index].phone,
+                },
+              };
+            } else {
+              return b;
+            }
+          });
+          setIsFetchingBookings(false);
+          setBookings(updatedBookings);
+        }
+      });
+    });
+  }
   return (
     <>
       {/* Om man inte är inloggad visas inloggnings sida */}
@@ -108,19 +131,41 @@ export function Admin() {
                 <th>Tid</th>
                 <th>Datum</th>
                 <th>Antal Personer</th>
-                <th>Customer Id</th>
+                <th>Customer</th>
               </tr>
             </thead>
 
             <tbody>
+              {isFetchingBookings && (
+                <tr>
+                  <td colSpan={10} style={{ textAlign: "center" }}>
+                    <Spinner
+                      animation="border"
+                      role="status"
+                      className="center"
+                    >
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  </td>
+                </tr>
+              )}
               {bookings
                 .sort((a, b) => a.date.localeCompare(b.date))
                 .map((booking: IBooking, index: number) => (
-                  <tr key={booking._id}>
+                  <tr key={booking._id + index}>
                     <td>{booking.time}</td>
                     <td>{booking.date}</td>
                     <td>{booking.numberOfGuests}</td>
-                    <td>{booking.customerId}</td>
+                    {booking.customer === undefined ||
+                    booking.customer.name === "" ? (
+                      <td>{booking.customerId}</td>
+                    ) : (
+                      <td style={{ whiteSpace: "pre" }}>
+                        {booking.customer.name} {booking.customer.lastname}
+                        {`\n${booking.customer.email}`}
+                        {`\n${booking.customer.phone}`}
+                      </td>
+                    )}
                     <td>
                       <Button
                         variant="warning"
