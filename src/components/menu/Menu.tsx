@@ -2,7 +2,7 @@ import { useState, Fragment } from "react";
 import { Col, Row, Container, Image } from "react-bootstrap";
 
 import menuJson from "../../data/menu.json";
-import { IDish, IMenu } from "../../models/IMenu";
+import { IDish, IMenu } from "../../models/interfaces/IMenu";
 
 export function Menu() {
   const [menu] = useState<IMenu[]>(menuJson);
