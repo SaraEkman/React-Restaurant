@@ -4,6 +4,7 @@ $darkblue:rgb(0,51,78);
 $lightblue:rgb(85,136,163);
 $mediumablue:rgb(20,83,116); */
 
+/* Gäller för hela sidan */
 h2,
 h3 {
   font-family: 'Cinzel', serif;
@@ -21,20 +22,24 @@ input:focus {
   border: 2px inset rgb(0, 51, 78);
 }
 
-.nav .active {
-  color: rgb(20, 83, 116);
-  text-decoration: underline;
-}
-
 label,
 input {
   font-family: 'Cinzel', serif;
   font-weight: bold;
 }
+main {
+  width: 100%;
+  min-height: 60vh;
+}
+
 /* Navigering */
 .nav {
   display: flex;
   flex-wrap: wrap;
+}
+.nav .active {
+  color: rgb(20, 83, 116);
+  text-decoration: underline;
 }
 
 .nav h1 {
@@ -60,6 +65,12 @@ input {
   list-style: none;
   text-align: center;
   font-family: 'Cinzel', serif;
+  transition: all 0.5s;
+}
+
+.nav ul li:hover {
+  transition: all 0.5s;
+  transform: scale(1.07);
 }
 
 .nav ul li a {
@@ -72,11 +83,7 @@ input {
 .nav ul li a:hover {
   color: rgb(85, 136, 163);
   font-weight: bold;
-}
-
-main {
-  width: 100%;
-  min-height: 60vh;
+  
 }
 
 /* Footer  */
@@ -103,11 +110,13 @@ footer ul li {
   list-style: none;
 }
 
+
 footer ul li a {
   color: rgb(255, 255, 255);
   text-decoration: none;
   padding: 3px;
 }
+
 
 /* Adress */
 .adress {
