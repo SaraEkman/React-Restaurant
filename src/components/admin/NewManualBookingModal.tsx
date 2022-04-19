@@ -1,5 +1,5 @@
 import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 
 import { IBooking } from "../../models/interfaces/IBooking";
 import { ICreateReserve } from "../../models/interfaces/ICreateReserve";
@@ -72,14 +72,6 @@ export function NewManualBookingModal(props: {
       });
     }
   }, [booking.date, props.bookings]);
-
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    let name = e.target.name;
-    const value =
-      e.target.type === "checkbox" ? e.target.checked : e.target.value;
-
-    setBooking({ ...booking, [name]: value });
-  }
 
   function handleNumberOfGuestsChange(e: ChangeEvent<HTMLInputElement>) {
     let name = e.target.name;

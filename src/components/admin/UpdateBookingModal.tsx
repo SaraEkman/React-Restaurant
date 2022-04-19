@@ -70,13 +70,6 @@ export function UpdateBookingModal(props: {
     }
   }, [props.booking]);
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    let name = e.target.name;
-    const value =
-      e.target.type === "checkbox" ? e.target.checked : e.target.value;
-
-    setBooking({ ...booking, [name]: value });
-  }
   function changeDate(e: ChangeEvent<HTMLInputElement>) {
     setBooking({ ...booking, time: "", date: e.target.value });
   }
