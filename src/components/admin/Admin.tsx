@@ -1,6 +1,6 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { Button, Container, Table, Spinner } from "react-bootstrap/";
-import { IBooking } from "../../models/IBooking";
+import { IBooking } from "../../models/interfaces/IBooking";
 
 import { GetAdminService } from "../../services/GetAdminService";
 import { NewManualBookingModal } from "./NewManualBookingModal";

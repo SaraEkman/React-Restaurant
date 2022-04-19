@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IBooking } from "../models/IBooking";
+import { IBooking } from "../models/interfaces/IBooking";
 
 import { ICreateReserve } from "../models/interfaces/ICreateReserve";
 

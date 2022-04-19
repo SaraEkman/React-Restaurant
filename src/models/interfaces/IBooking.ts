@@ -1,4 +1,5 @@
 export interface IBooking {
+  // Behövs till Admin då man får tillbaks _id från API:et.
   _id: string;
   restaurantId: string;
   date: string;

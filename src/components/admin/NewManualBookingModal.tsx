@@ -1,7 +1,7 @@
 import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 
-import { IBooking } from "../../models/IBooking";
+import { IBooking } from "../../models/interfaces/IBooking";
 import { ICreateReserve } from "../../models/interfaces/ICreateReserve";
 
 export function NewManualBookingModal(props: {

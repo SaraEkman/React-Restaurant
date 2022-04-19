@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { MouseEventHandler } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { IBooking } from "../../models/IBooking";
+import { IBooking } from "../../models/interfaces/IBooking";
 
 export function UpdateBookingModal(props: {
   show: boolean;
