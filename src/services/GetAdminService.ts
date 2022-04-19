@@ -1,6 +1,7 @@
 import axios from "axios";
 import { IBooking } from "../models/IBooking";
-import { ICreateBooking } from "../models/ICreateBooking";
+
+import { ICreateReserve } from "../models/interfaces/ICreateReserve";
 
 export class GetAdminService {
   async getBookings(id: string): Promise<IBooking[]> {
@@ -38,7 +39,7 @@ export class GetAdminService {
     );
     return response.data;
   }
-  async createBooking(booking: ICreateBooking): Promise<any> {
+  async createBooking(booking: ICreateReserve): Promise<any> {
     let response = await axios.post(
       `https://school-restaurant-api.azurewebsites.net/booking/create`,
       booking

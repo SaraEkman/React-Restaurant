@@ -1,15 +1,16 @@
 import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
-import { ICreateBooking } from "../../models/ICreateBooking";
+
 import { IBooking } from "../../models/IBooking";
+import { ICreateReserve } from "../../models/interfaces/ICreateReserve";
 
 export function NewManualBookingModal(props: {
   show: boolean;
   onHide: MouseEventHandler<HTMLButtonElement> | undefined;
-  onSave(booking: ICreateBooking): void;
+  onSave(booking: ICreateReserve): void;
   bookings: IBooking[];
 }) {
-  const [booking, setBooking] = useState<ICreateBooking>({
+  const [booking, setBooking] = useState<ICreateReserve>({
     restaurantId: "624c2f5347678330c7a5c58e",
     date: "",
     time: "",

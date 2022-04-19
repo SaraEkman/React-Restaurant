@@ -1,13 +1,14 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { Button, Container, Table, Spinner } from "react-bootstrap/";
 import { IBooking } from "../../models/IBooking";
-import { ICreateBooking } from "../../models/ICreateBooking";
+
 import { GetAdminService } from "../../services/GetAdminService";
 import { NewManualBookingModal } from "./NewManualBookingModal";
 import { UpdateBookingModal } from "./UpdateBookingModal";
 import { Button as StyledButton } from "../styled-com/Button";
 import { Div } from "../styled-com/Div";
 import "./admin.css";
+import { ICreateReserve } from "../../models/interfaces/ICreateReserve";
 
 export function Admin() {
   const [Name, setName] = useState("");
@@ -50,7 +51,7 @@ export function Admin() {
       setBookings(filteredBookings);
     });
   }
-  function createBooking(booking: ICreateBooking) {
+  function createBooking(booking: ICreateReserve) {
     setModalNewManualShow(false);
     service.createBooking(booking).then((data: IBooking) => {
       getBookings();
