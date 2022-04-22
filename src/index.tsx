@@ -3,7 +3,7 @@ import ReactDOMClient from "react-dom/client";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
 import { Home } from "./components/home/Home";
 import { Admin } from "./components/admin/Admin";
@@ -17,7 +17,7 @@ const root = ReactDOMClient.createRoot(container as Element);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -28,7 +28,7 @@ root.render(
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
