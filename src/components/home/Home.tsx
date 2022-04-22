@@ -19,7 +19,7 @@ export function Home() {
   return (
     <section className="mainSection">
       <div
-        style={{ backgroundImage: 'url(../images/colosseum.jpg)' }}
+        style={{ backgroundImage: 'url(./images/colosseum.jpg)' }}
         className="buttonsDiv"
       >
         {/* Knappar för att boka bord och till menyn */}
@@ -47,14 +47,14 @@ export function Home() {
           </p>
         </div>
         <img
-          src="../images/pasta-luxe.jpg"
+          src="./images/pasta-luxe.jpg"
           width="100%"
           height="auto"
           alt="pasta"
         />
       </div>
       <div className="employeesContent">
-        <img src="../images/chef.jpg" width="100%" height="auto" alt="chef" />
+        <img src="./images/chef.jpg" width="100%" height="auto" alt="chef" />
         <div>
           <h2>Vår pesonal</h2>
           <p>
@@ -83,7 +83,7 @@ export function Home() {
             </p>
           </div>
           <img
-            src="../images/family.jpg"
+            src="./images/family.jpg"
             width="50%"
             height="auto"
             alt="family"
@@ -100,7 +100,7 @@ export function Home() {
             </p>
           </div>
           <img
-            src="../images/wine-food.jpg"
+            src="./images/wine-food.jpg"
             width="50%"
             height="auto"
             alt="wine-food"
