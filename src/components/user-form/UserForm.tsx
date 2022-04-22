@@ -83,6 +83,7 @@ export function UserForm(props: IGetTimeProps) {
   )
 
   const [show,setShow] = useState(true)
+  const [Date,setDate] = useState("")
 
   const postData = () => {
     let num = props.people
@@ -98,12 +99,8 @@ export function UserForm(props: IGetTimeProps) {
         phone: enteredPhone,
       },
     }
-    let saveInfo: any = []
     let postData = new GetDataServices()
     postData.createBooking(CreateReserve)
-    saveInfo = [enteredFirstName, props.time, props.date]
-
-    localStorage.setItem('ReservationInfo', JSON.stringify(saveInfo))
   }
 
   const submitFormHandler = (e: any) => {
@@ -113,6 +110,7 @@ export function UserForm(props: IGetTimeProps) {
     setShow(false)
     // Den gömmer tid knapparna i tablereservation komponenten
     props.changeBtns()
+    setDate(props.date)
   }
 
   return (<>
@@ -174,7 +172,7 @@ export function UserForm(props: IGetTimeProps) {
       : <div className="thanksDiv">
         <p>
           Tack för din beställning <b>{enteredFirstName}</b>!<br></br> Ditt bord är reserverad för
-          <b> klockan {props.time} den {props.date}</b>
+          <b> klockan {props.time} den {Date}</b>
           <br></br> Välkommen åter.
         </p>
       </div>}

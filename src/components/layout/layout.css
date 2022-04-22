@@ -96,6 +96,7 @@ footer {
   gap: 10px;
   padding-bottom: 10px;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 footer ul {
