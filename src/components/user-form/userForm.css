@@ -5,8 +5,45 @@
   margin-top: 1rem;
 }
 
+.userFormDiv div {
+  background-color: rgb(240, 247, 250);
+  border-radius: none;
+  border: none;
+}
+
+.userFormDiv p{
+  color:red;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
 .userFormBtn {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+} 
+.formBtn:disabled {
+  background-color: rgb(122, 121, 121);
+}
+.formBtn:disabled:hover {
+  transform: none;
+  background-color: rgb(122, 121, 121);
+}
+
+.thanksDiv p {
+  font-size: 1.5rem;
+  font-family: 'Cinzel', serif;
+}
+.thanksDiv p b{
+  font-weight: bolder;
+}
+
+@media only screen and (min-width: 600px) {
+  .thanksDiv {
+    width: 50%;
+    padding: 2%;
+  }
+  .thanksDiv p {
+      margin: auto;
+  }
 }

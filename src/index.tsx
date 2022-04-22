@@ -11,7 +11,6 @@ import { Contact } from "./components/contact/Contact";
 import { Menu } from "./components/menu/Menu";
 import { TableReservation } from "./components/table-reservation/TableReservation";
 import { NotFound } from "./components/not-found/NotFound";
-import { ThanksForReservation } from "./components/thanksCom/ThanksForReservation";
 
 const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container as Element);
@@ -26,10 +25,6 @@ root.render(
           <Route path="/contact" element={<Contact />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/table-reservation" element={<TableReservation />} />
-          <Route
-            path="/thanksForReservation"
-            element={<ThanksForReservation />}
-          />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

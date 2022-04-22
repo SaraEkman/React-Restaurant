@@ -169,5 +169,6 @@ footer ul li a {
   footer a:hover {
     background-color: rgb(20, 83, 116);
     border-radius: 10px;
+    color: aliceblue;
   }
 }

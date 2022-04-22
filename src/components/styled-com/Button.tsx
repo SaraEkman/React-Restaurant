@@ -18,4 +18,9 @@ export const Button = styled.button`
     transform: scale(1.1);
     transition: all 0.5s;
   }
+  &.btnActive{
+    background-color:rgb(20, 83, 116);
+    transform: scale(1.05);
+
+  }
 `

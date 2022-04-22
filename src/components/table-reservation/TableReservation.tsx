@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react'
+import { Toggle } from 'react-bootstrap/lib/Dropdown'
 import { IReservation } from '../../models/interfaces/IReservation'
 import { GetDataServices } from '../../services/GetDataServices'
 import { Button } from '../styled-com/Button'
@@ -14,10 +15,12 @@ export function TableReservation() {
   const [ShowError21, setShowError21] = useState(false)
   const [ShowUserForm, setShowUserForm] = useState(false)
   const [Time, setTime] = useState('')
+  const [isActive18, setIsActive18] = useState(false)
+  const [isActive21, setIsActive21] = useState(false)
 
+  const [ShowBtnGetTime,setShowBtnGetTime] = useState(true)
   const [InputDateValue, setInputDateValue] = useState('')
   const [InputNumValue, setInputNumValue] = useState('')
-  const [NumOfTables, setNumOfTables] = useState(0)
   const [Bookings, setBookings] = useState<IReservation[]>([])
   // Hämtar bokningar
   useEffect(() => {
@@ -26,6 +29,23 @@ export function TableReservation() {
       setBookings(bookingsData)
     })
   }, [])
+
+  useEffect(() => {
+     if (InputDateValue !== "" && InputNumValue !== "") {
+      setShowBtnGetTime(false)
+    }else if(InputDateValue === "" && InputNumValue === "") setShowBtnGetTime(true)
+  }, [InputNumValue && InputDateValue])
+  
+   useEffect(() => {
+     if (Time === "18:00") {
+      setIsActive18(true)
+    }else if (Time === "21:00") setIsActive18(false)
+     if (Time === "21:00") {
+      setIsActive21(true)
+    } else if (Time === "18:00") setIsActive21(false)
+    
+  },[Time])
+
   // Sparar datum som användaren väljer
   const saveTheDate = (e: ChangeEvent<HTMLInputElement>) => {
     setInputDateValue(e.target.value)
@@ -37,10 +57,13 @@ export function TableReservation() {
   // Vi kontrollerar data och kollar om det finns ledig tid-körs på hitta tid knappen
   const checkData = () => {
     // Skapar en lista som innehåller alla bokningar på det datumet användaren har valt
+
     let sameDate: IReservation[] = []
     setShowUserForm(false)
     setShowBtn18(true)
     setShowBtn21(true)
+    setIsActive18(false)
+    setIsActive21(false)
 
     Bookings.map((boking) => {
       if (boking.date === InputDateValue) {
@@ -49,7 +72,6 @@ export function TableReservation() {
     })
     // Antal bord besökaren önskar boka
     const numOfTables = Math.ceil(+InputNumValue / 6)
-    setNumOfTables(numOfTables)
 
     // Antal bord som finns bokade för kl18 eller 21 i APIet
     let numOfTables18:number[]=[]
@@ -89,10 +111,19 @@ export function TableReservation() {
     } else setShowError(false)
   }
 
+ 
+
   const goToUserForm = (e: any) => {
     // sparar tiden från knappen (18 eller 21) för att kunna skicka vidare
     setTime(e.target.innerHTML)
     setShowUserForm(true)
+  }
+
+  const Toggle = () => {
+    setShowBtn18(false)
+    setShowBtn21(false)
+    setInputDateValue("")
+    setInputNumValue("")
   }
 
   let today = new Date().toLocaleDateString()
@@ -119,14 +150,14 @@ export function TableReservation() {
             onChange={saveTheDate}
           />
         </label>
-        <Button type="submit" onClick={checkData}>
+        <Button disabled={ShowBtnGetTime} type="submit" onClick={checkData}>
           Hitta tid
         </Button>
 
       <div className="btnDiv">
         {ShowBtn18 ? (
           <div>
-            <Button onClick={goToUserForm}>18:00</Button>
+            <Button className={isActive18 ?  "btnActive" : "btnInactive"} onClick={goToUserForm}>18:00</Button>
           </div>
         ) : ShowError18 === true ? (
           <div className='errorMessage'>Tiden klockan 18 är upptagen!</div>
@@ -135,7 +166,7 @@ export function TableReservation() {
         )}
         {ShowBtn21 ? (
           <div>
-            <Button onClick={goToUserForm}>21:00</Button>
+            <Button className={isActive21 ?  "btnActive" : "btnInactive"} onClick={goToUserForm}>21:00</Button>
           </div>
         ) : ShowError21 === true ? (
           <div className='errorMessage'>Tiden klockan 21 är upptagen!</div>
@@ -155,6 +186,7 @@ export function TableReservation() {
           time={Time}
           date={InputDateValue}
           people={+InputNumValue}
+          changeBtns={Toggle}
         ></UserForm>
       ) : (
         <div></div>

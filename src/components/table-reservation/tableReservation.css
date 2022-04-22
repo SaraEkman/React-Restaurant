@@ -10,12 +10,22 @@
 .bookingDiv label {
   margin-bottom: 12px;
 }
+.bookingDiv button:disabled {
+    background-color: rgb(122, 121, 121);
+}
+
+.bookingDiv button:disabled:hover {
+  transform: none;
+  background-color: rgb(122, 121, 121);
+}
 
 .btnDiv {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+
 /* För skärm över 600px */
 @media only screen and (min-width: 600px) {
   .bookingDiv {
